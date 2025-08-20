@@ -1,0 +1,106 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Lenovo\\source\\repos\\PPS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{63213AF6-74A3-4782-A362-E46DBDD9D51F}|DataModels\\DataModels.csproj|c:\\users\\lenovo\\source\\repos\\pps\\datamodels\\helpers\\ppsfunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63213AF6-74A3-4782-A362-E46DBDD9D51F}|DataModels\\DataModels.csproj|solutionrelative:datamodels\\helpers\\ppsfunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{63213AF6-74A3-4782-A362-E46DBDD9D51F}|DataModels\\DataModels.csproj|c:\\users\\lenovo\\source\\repos\\pps\\datamodels\\models\\entities\\clientdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{63213AF6-74A3-4782-A362-E46DBDD9D51F}|DataModels\\DataModels.csproj|solutionrelative:datamodels\\models\\entities\\clientdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07FF31AF-8F49-4D7C-9236-51FABD82008E}|APIs\\APIs.csproj|c:\\users\\lenovo\\source\\repos\\pps\\apis\\controllers\\clientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07FF31AF-8F49-4D7C-9236-51FABD82008E}|APIs\\APIs.csproj|solutionrelative:apis\\controllers\\clientscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07FF31AF-8F49-4D7C-9236-51FABD82008E}|APIs\\APIs.csproj|c:\\users\\lenovo\\source\\repos\\pps\\apis\\apis.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{07FF31AF-8F49-4D7C-9236-51FABD82008E}|APIs\\APIs.csproj|solutionrelative:apis\\apis.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lenovo\\source\\repos\\PPS\\Clients\\APIs.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Clients\\APIs.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 145,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PPSFunctions.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Helpers\\PPSFunctions.cs",
+              "RelativeDocumentMoniker": "DataModels\\Helpers\\PPSFunctions.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Helpers\\PPSFunctions.cs",
+              "RelativeToolTip": "DataModels\\Helpers\\PPSFunctions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T20:05:08.614Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ClientDetail.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Models\\Entities\\ClientDetail.cs",
+              "RelativeDocumentMoniker": "DataModels\\Models\\Entities\\ClientDetail.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Models\\Entities\\ClientDetail.cs",
+              "RelativeToolTip": "DataModels\\Models\\Entities\\ClientDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T19:54:13.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClientsController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\APIs\\Controllers\\ClientsController.cs",
+              "RelativeDocumentMoniker": "APIs\\Controllers\\ClientsController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\APIs\\Controllers\\ClientsController.cs",
+              "RelativeToolTip": "APIs\\Controllers\\ClientsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T14:16:53.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "APIs.csproj",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\APIs\\APIs.csproj",
+              "RelativeDocumentMoniker": "APIs\\APIs.csproj",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\APIs\\APIs.csproj",
+              "RelativeToolTip": "APIs\\APIs.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-21T21:16:02.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "APIs.csproj",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\Clients\\APIs.csproj",
+              "RelativeDocumentMoniker": "Clients\\APIs.csproj",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\Clients\\APIs.csproj",
+              "RelativeToolTip": "Clients\\APIs.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-19T16:59:30.547Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

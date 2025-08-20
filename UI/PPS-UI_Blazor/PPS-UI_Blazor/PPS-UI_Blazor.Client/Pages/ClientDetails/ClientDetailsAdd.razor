@@ -1,0 +1,2754 @@
+﻿@page "/clientDetails/add/"
+@using DataModels.Helpers
+@inject NavigationManager NavigationManager
+@inject IClientDetailService ClientDetailService
+@rendermode InteractiveAuto
+
+
+<h3>Add Client Details</h3>
+
+<div class="text-center">
+    <h1 class="display-4">Client Details</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Also Known As
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                <tr>
+                    <td>
+                        client.fname
+                    </td>
+                    <td>
+                        client.lname
+                    </td>
+                    <td>
+                        client.aka
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<label class="visually-hidden">client detail key</label>
+<input class="visually-hidden" type="text" placeholder="" asp-for="clientDetail.clientDetail_key" />
+
+<label class="visually-hidden">client key</label>
+<input class="visually-hidden" type="text" placeholder="" asp-for="clientDetail.client_key" />
+
+<EditForm Model="clientDetailView" FormName="addClientDetail" OnValidSubmit="AddClientDetail">  
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <ValidationSummary></ValidationSummary>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Social Security Number</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.ssn" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Date Admitted</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.admitted" class="form-control"></InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Gender</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.sex" class="form-control">
+                <option></option>
+                <option>Male</option>
+                <option>Female</option>
+            </InputSelect>
+        </div>
+    </div>
+
+    @if(clientDetailView.clientDetail.sex == "Female")
+    {
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Maiden Name</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="clientDetailView.clientDetail.maidnm" class="form-control"></InputText>
+            </div>
+        </div>
+
+    }
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Home Phone</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.hphone" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Work Phone</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.wphone" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Marital Status</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.marital" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Birthday</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.birthday" class="form-control"></InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Billing ID</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.bill_id" class="form-control"></InputText>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Code</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.bill_code" class="form-control"></InputText>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Group 1 (?)</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.group1" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Group 2 (?)</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.group2" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">County of Legitimancy</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.countleg" class="form-control"></InputSelect>
+            @foreach (piklist pickList in clientDetailView.pickListValues)
+            {
+                if (pickList.fieldd == "CLIENTS.COUNTY")
+                {
+            <option value="@pickList.item">@pickList.item</option>
+                }
+            }
+    </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">County of Residence</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.county" class="form-control"></InputSelect>
+            @foreach (piklist pickList in clientDetailView.pickListValues)
+            {
+                if(pickList.fieldd == "CLIENTS.COUNTY")
+                {
+                    <option value="@pickList.item">@pickList.item</option>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Gender</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.resp_key" class="form-control">
+                @foreach(ResponsiblePerson responsiblePerson in clientDetailView.responsiblePersons)
+                {
+                    <option value="@responsiblePerson.staffKey">@responsiblePerson.staffName</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">External Case Manager</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.excaseman" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Program Location</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.location" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Day Program</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.dayprogram" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Medicare</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.medicare" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Medicaid</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.medicaid" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Ethnicity</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.ethnic" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Home Waiver</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.homewaiver" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.HOMEWAIVER")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Recreation Support</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.recstsupp" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Reppayee?</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.reppayee" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Employer</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.employer" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Employment Type</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.emptype" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Hire Date</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.hiredate" class="form-control"></InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Hourly Rate</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.hrlyrate" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Transportation Cost</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.costtrans" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Hours Worked per Week</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.empnohrs" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Pay Month</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.paymonth" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if(pickList.fieldd == "MONTH")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Pay Amount</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.payamt" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Cost of Tools</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.costtools" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">uimasocsec</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.uimasocsec" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">uimassi</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.uimassi" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">uimava</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.uimava" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">uimatrust</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.uimatrust" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">uimarb</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.uimarb" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">uimapen</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.uimapen" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">uimaint</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.uimaint" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">uimaothr</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.uimaothr" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">incnote</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.incnote" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olades1</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.olades1" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olaval1</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.olaval1" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olades2</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.olades2" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olaval2</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.olaval2" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olades3</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.olades3" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olaval3</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.olaval3" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olades4</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.olades4" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olaval4</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.olaval4" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olades5</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.olades5" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">olaval5</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.olaval5" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Property Value</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.propval" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Vehicle Value</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.vehicval" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Plot Value</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.plotval" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Insurance Value</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.insval" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Total Assets</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.totalasset" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Asset Month</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.assetmon" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if(pickList.fieldd == "MONTH")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Asset Year</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.assetyear" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Mental R</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.mr" class="form-control"></InputCheckbox>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Developmently Disabled</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.dd" class="form-control"></InputCheckbox>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Physically Disabled</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.pd" class="form-control"></InputCheckbox>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Needs 24 Hour Care</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.care_24hr" class="form-control"></InputCheckbox>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">DSM Diagnosis</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.dsmdiag" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Medical Diagnosis</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.diag" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Allergies</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.allergies" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Blood Type</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.bloodtype" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd == "CLIENTS.BLOODTYPE")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Heigth</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.height" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Weight</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.weight" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Complextion</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.complexton" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Eye Color</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.eyecolor" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.EYECOLOR")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Hair Color</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.haircolor" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.HAIRCOLOR")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Vision Issues</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.vision" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.VISION")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Hearing Issues</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.hearing" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.HEARING")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Health Issues</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.health" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.HEALTH")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Seizure Issues</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.seizure" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.SEIZURE")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Primary Physican</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.physician" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Medical Alerts</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.medalert" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Medical Adaptive Devices</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.medadapt" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Diet</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.diet" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Identifying Marks</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.idmarks" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Assistive Devices</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.assisdev" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Languages Understood</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.langus" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "LANGUAGE")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Languages Spoken</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.langspok" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "LANGUAGE")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Communication Level (Exp)</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.commlvle" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.COMMLVLE")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Communication Mode (Exp)</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.commmode" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.COMMMODE")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Communication Level (Rec)</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.commlvlr" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.COMMLVLR")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Communication Mode (Rec)</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.commmodr" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.COMMMODR")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Mental Functioning</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.mentfunc" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.MENTFUNC")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Adaptive Functioning</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.adapfunc" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.ADAPFUNC")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Mobility</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.mobility" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.MOBILITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Mobility Assistance</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.mobassist" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.MOBASSIST")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Arm/Hand Limitations</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.armhand" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.ARMHAND")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Vocational Skills</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.vocaskills" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.VOCASKILLS")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Adaptive Devices</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.adaptdev" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Education Level</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.educalvl" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.EDUCALVL")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Social Interaction</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.social" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.SOCIAL")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Transferring</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.transfer" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.SOCIAL")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Toileting</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.toilet" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.TOILET")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Eating</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.eating" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.EATING")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Mealtime</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.meal" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.MEAL")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Bathing</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.bathing" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.BATHING")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Dressing</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.dressing" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.DRESSING")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Grooming</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.grooming" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.GROOMING")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Hurts Self Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.selffreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.selffreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Hurts Others Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.othrfreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.othrsev" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Destructive Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.destrfreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.destrsev" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Disruptive Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.disrfreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.disrsev" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">rept? Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.reptfreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.reptsev" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">off? Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.offfreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.offsev" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">wib? Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.wibfreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.wibsev" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Uncoorpertive Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.uncoopfreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.uncoopsev" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Wandering Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.wanderfreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.wandersev" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Pica Frequency</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.picafreq" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BFREQUENCY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Severity</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.picasev" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BSEVERITY")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Behavior Adapt</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.behavadapt" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Intake Status</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.intakestat" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.INTAKESTAT")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">det Date</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.detdate" class="form-control"></InputDate>
+        </div>
+        <div class="col-2">
+            <label class="col-form-label">Code</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.detcode" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.DETCODE")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">svc Date</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.svcdate" class="form-control"></InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">app Date</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.appdate" class="form-control"></InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Provisions</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.provision" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.PROVISION")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Class A Suit</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.classasuit" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Last Place</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.lastplace" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Volunteer</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.volunteer" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Visitor Restrictions</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.visitor_rs" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Religion</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.religion" class="form-control"></InputText>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Notes</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.relig_note" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Day Place</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.dayplace" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "CLIENTS.LOCATION")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Prior Responsible Person</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.resprior" class="form-control">
+                @foreach (ResponsiblePerson person in clientDetailView.responsiblePersons)
+                {
+                    <option value="@person.staffName">@person.staffName</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">namerele</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.namerele" class="form-control"></InputCheckbox>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">photoclr</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.photoclr" class="form-control"></InputCheckbox>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Legal Compantence</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.legalcomp" class="form-control"></InputCheckbox>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Date of Adjudication</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.dol_adjuca" class="form-control"></InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">T Reason?</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.treason" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Term Date? work?</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.termdate" class="form-control"></InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">discsum</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.discsum" class="form-control"></InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Picture File Name</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.picfilename" class="form-control"></InputText>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Extension</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.pictureext" class="form-control"></InputText>
+        </div>
+        @* TODO: Add button to upload picture *@
+        @* @Html.TextBoxFor(Model => Model.clientDetail.picture, new { @disabled = "disabled", value = "enter picture" }) *@
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">US Citizenship</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.is_uscitz" class="form-control"></InputCheckbox>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Citizenship Code</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.citizenshipcode" class="form-control"></InputNumber>
+        </div>
+
+        @if(clientDetailView.clientDetail.is_uscitz == false)
+        {
+            <div class="col-2">
+                <label class="col-form-label">A Number</label>
+            </div>
+            <div class="col-6">
+                <InputNumber @bind-Value="clientDetailView.clientDetail.a_num" class="form-control"></InputNumber>
+            </div>
+
+            <div class="col-2">
+                <label class="col-form-label">Expiration Date</label>
+            </div>
+            <div class="col-6">
+                <InputDate @bind-Value="clientDetailView.clientDetail.a_numexpdt" class="form-control"></InputDate>
+            </div>
+        }
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">agept (Client Age?)</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.agept" class="form-control"></InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Behavior Exists?</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.behavexist" class="form-control"></InputCheckbox>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Behavior Title</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.bfreefactr" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    if (pickList.fieldd.Trim() == "BEHAVIOR")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Hypothises(sp?)</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.bgenhypoth" class="form-control"></InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Interval</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.bhvintrval" class="form-control"></InputText>
+        </div>
+
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.bhvrsp_key" class="form-control">
+                @foreach (ResponsiblePerson person in clientDetailView.responsiblePersons)
+                {
+                    <option value="@person.staffName">@person.staffKey</option>
+                }
+            </InputSelect>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Precursor</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.bprecursor" class="form-control"></InputTextArea>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Place of Birth</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.birthplace" class="form-control"></InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Case Manager</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.caseman" class="form-control">
+                @foreach (ResponsiblePerson person in clientDetailView.responsiblePersons)
+                {
+                    <option value="@person.staffName">@person.staffName</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Claid</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.claid" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Closcount</label> 
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.closcount" class="form-control"> </InputNumber>
+        </div>
+                
+        <div class="col-2">
+            <label class="col-form-label">Closdate</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.closdate" class="form-control"> </InputDate>  
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">closdispcode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.closdispcode" class="form-control"> </InputNumber>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">closrescode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.closrescode" class="form-control"> </InputNumber>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">cntyorigincode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.cntyorigincode" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">courttreatmentcode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.courttreatmentcode" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">deldate</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.deldate" class="form-control"> </InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">dfi_cfi_enroll</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.dfi_cfi_enroll" class="form-control"> </InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Discharge Date</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.disch_date" class="form-control"> </InputDate>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Discharge Reason</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.disch_reason" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Discharge Time</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.disch_time" class="form-control"> </InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-1">
+            <label class="col-form-label">DSM Diagnosis</label>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Axis 1</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.dsm4axis1" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Axis 2</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.dsm4axis2" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Axis 3</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.dsm4axis3" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Axis 4</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.dsm4axis4" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">SOFA</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.dsm4sofa" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-1">
+            <label class="col-form-label">Fun</label>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Present</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.funpresnt" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Vision</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.funvision" class="form-control"> </InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">gdnstat</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.gdnstat" class="form-control"> </InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">hispanicorigincode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.hispanicorigincode" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Home Present</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.homepresnt" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Vision</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.homevision" class="form-control"> </InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Hospital Prefrence</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.hospitalpref" class="form-control"> </InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">interpsvccode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.interpsvccode" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">ippdate</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.ippdate" class="form-control"> </InputDate>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Last PDP</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.lastpdp" class="form-control"> </InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-1">
+            <label class="col-form-label">Learning</label>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Current</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.lernpresnt" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Vision</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.lernvision" class="form-control"> </InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Living Unit</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.livunit_key" class="form-control">
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    @* TODO: Need to read table liv_unit and add to ClientDetailView.cs *@
+                    if (pickList.fieldd.Trim() == "AI.LIVINGUNIT")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">milstatcode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.milstatcode" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Objective Met</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.obj_met" class="form-control"></InputCheckbox>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Other Present</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.othrpresnt" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Other Vision</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.othrvision" class="form-control"> </InputTextArea>
+        </div>
+        <svg>
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" </path>  
+        </svg>
+
+        <div class="col-2">
+            <label class="col-form-label">Other Present 2</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.oth2presnt" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Other Vision 2</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.oth2vision" class="form-control"> </InputTextArea>
+        </div>
+        <svg>
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" </path>  
+        </svg>
+
+        <div class="col-2">
+            <label class="col-form-label">Other Present 3</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.oth3presnt" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Other Vision 3</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.oth3presnt" class="form-control"> </InputTextArea>
+        </div>
+        <svg>
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" </path>
+        </svg>
+
+        <div class="col-2">
+            <label class="col-form-label">othrace</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.othrace" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Othr Agencies</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.othragencies" class="form-control"> </InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Pals Present</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.palspresnt" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Vision</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.palsvision" class="form-control"> </InputTextArea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Public Aid ID</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.publicaidid" class="form-control"> </InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">regrescode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.regrescode" class="form-control"> </InputNumber>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">regcount</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.regcount" class="form-control"> </InputNumber>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">regdate</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.regdate" class="form-control"> </InputDate>
+        </div>
+
+    </div>
+
+     <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Representative Payee</label>
+        </div>
+        <div class="col-6">
+            <InputSelect @bind-Value="clientDetailView.clientDetail.rep_payee" class="form-control">
+                @* TODO:  once value chosen, place value in reppayee as well *@
+                @foreach (piklist pickList in clientDetailView.pickListValues)
+                {
+                    @* TODO: Need to read table liv_unit and add to ClientDetailView.cs *@
+                    if (pickList.fieldd.Trim() == "AI.LIVINGUNIT")
+                    {
+                        <option value="@pickList.item">@pickList.item</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Review Due Date</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.revduedate" class="form-control"> </InputDate>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Reviewer</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.revfirst" class="form-control"> </InputText>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.revlast" class="form-control"> </InputText>
+        </div>
+
+    </div>
+
+
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">ROCSDD_DnLoad</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.ROCSDD_DnLoad" class="form-control"></InputCheckbox>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">ROCS_DnLoad</label>
+        </div>
+        <div class="col-6">
+            <InputCheckbox @bind-Value="clientDetailView.clientDetail.ROCS_DnLoad" class="form-control"></InputCheckbox>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">ROCS_UpLoad</label>
+        </div>
+        <div class="col-6">
+        <InputCheckbox @bind-Value="clientDetailView.clientDetail.ROCS_UpLoad" class="form-control"></InputCheckbox>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+        <label class="col-form-label">site</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.site" class="form-control"> </InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+        <label class="col-form-label">sname</label>
+        </div>
+        <div class="col-6">
+            <InputText @bind-Value="clientDetailView.clientDetail.sname" class="form-control"> </InputText>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">ssi_ssdi_eligcode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.ssi_ssdi_eligcode" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">State Facility ID</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.statefacid" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">tca_code</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.tca_code" class="form-control"> </InputNumber>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">tca_origincode</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.tca_origincode" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Trigger Date</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.triggrdate" class="form-control"> </InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Trigger Date</label>
+        </div>
+        <div class="col-6">
+            <InputDate @bind-Value="clientDetailView.clientDetail.triggrdate" class="form-control"> </InputDate>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">Work Present</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.workpresnt" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">Vision</label>
+        </div>
+        <div class="col-6">
+            <InputTextArea @bind-Value="clientDetailView.clientDetail.workvision" class="form-control"> </InputTextArea>
+        </div>
+
+        <div class="col-2">
+            <label class="col-form-label">YTD Leave</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.ytdleave" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-2">
+            <label class="col-form-label">zipcode_origin</label>
+        </div>
+        <div class="col-6">
+            <InputNumber @bind-Value="clientDetailView.clientDetail.zipcode_origin" class="form-control"> </InputNumber>
+        </div>
+    </div>
+
+
+</EditForm>
+
+ 
+@*         <label class="mt-4">
+            dfscaseid
+            @Html.TextBoxFor(Model => Model.clientDetail.dfscaseid, new { @disabled = "disabled", value = "enter dfscaseid" })
+             <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dfscaseid" />
+ *@
+
+
+@code {
+
+    public int clientId { get; set; }
+
+    [SupplyParameterFromForm]
+    private ClientDetailView clientDetailView { get; set; }
+
+
+
+    protected override void OnParametersSet()
+    {
+        //Get last client key   Why do we need this?  This should be handled by the API
+        //clientId = 3;
+    }
+
+    private async void AddClientDetail()
+    {
+        //Add/Post Client
+        if (clientDetailView.clientDetail != null)
+        {
+
+            //ClientDetail newDetails = clientDetailView.clientDetail.DeepCopy(); //CreateClientDetailRecord(clientDetailView.clientDetail);
+            ClientDetail newDetails = new ClientDetail();
+            DataModels.Helpers.PPSFunctions.CopyPropertyValues(clientDetailView.clientDetail, newDetails);
+
+            //Call API to post client
+            HttpResponseMessage httpResponse = await ClientDetailService.AddClientDetails(newDetails);
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                //Redirect to Client List
+                NavigationManager.NavigateTo("/Client/List");
+            }
+        }
+    }
+
+
+    private ClientDetail CreateClientDetailRecord(ClientDetail clientDetailObj)
+    {
+        ClientDetail clientDetail = new ClientDetail();
+        clientDetail.adapfunc = clientDetailObj.adapfunc;
+        clientDetail.adaptdev = clientDetailObj.adaptdev;
+        clientDetail.admitted = clientDetailObj.admitted;
+        clientDetail.agept = clientDetailObj.agept;
+        clientDetail.a_num = clientDetailObj.a_num;
+        clientDetail.bathing = clientDetailObj.bathing;
+        clientDetail.appdate = clientDetailObj.appdate;
+        clientDetail.allergies = clientDetailObj.allergies;
+        clientDetail.armhand = clientDetailObj.armhand;
+        clientDetail.assetmon = clientDetailObj.assetmon;
+        clientDetail.assetyear = clientDetailObj.assetyear;
+        clientDetail.assisdev = clientDetailObj.assisdev;
+        clientDetail.a_numexpdt = clientDetailObj.a_numexpdt;
+        clientDetail.behavadapt = clientDetailObj.behavadapt;
+        clientDetail.behavexist = clientDetailObj.behavexist;
+        clientDetail.behavobjno = clientDetailObj.behavobjno;  
+        clientDetail.behavtitle = clientDetailObj.behavtitle;
+        clientDetail.bfreefactr = clientDetailObj.bfreefactr;
+        clientDetail.bgenhypoth = clientDetailObj.bgenhypoth;
+        clientDetail.bhvintrval = clientDetailObj.bhvintrval;
+        clientDetail.bhvrsp_key = clientDetailObj.bhvrsp_key;
+        clientDetail.bill_code = clientDetailObj.bill_code;
+        clientDetail.bill_id = clientDetailObj.bill_id;
+        clientDetail.birthday = clientDetailObj.birthday;
+        clientDetail.birthplace = clientDetailObj.birthplace;
+        clientDetail.bloodtype = clientDetailObj.bloodtype;
+        clientDetail.bprecursor = clientDetailObj.bprecursor;
+        clientDetail.care_24hr = clientDetailObj.care_24hr;
+        clientDetail.caseman = clientDetailObj.caseman;
+        clientDetail.citizenshipcode = clientDetailObj.citizenshipcode;
+        clientDetail.claid = clientDetailObj.claid;
+        clientDetail.classasuit = clientDetailObj.classasuit;
+        clientDetail.client_key  = clientDetailObj.client_key;
+        clientDetail.closcount = clientDetailObj.closcount;
+        clientDetail.closdate = clientDetailObj.closdate;
+        clientDetail.closdispcode = clientDetailObj.closdispcode;
+        clientDetail.closrescode = clientDetailObj.closrescode;
+        clientDetail.cntyorigincode = clientDetailObj.cntyorigincode;
+        clientDetail.commlvle = clientDetailObj.commlvle;
+        clientDetail.commlvlr = clientDetailObj.commlvlr;
+        clientDetail.commmode = clientDetailObj.commmode;
+        clientDetail.commmodr = clientDetailObj.commmodr;
+        clientDetail.complexton = clientDetailObj.complexton;
+        clientDetail.costtools = clientDetailObj.costtools;
+        clientDetail.costtrans = clientDetailObj.costtrans;
+        clientDetail.countleg = clientDetailObj.countleg;
+        clientDetail.county = clientDetailObj.county;
+        clientDetail.courttreatmentcode = clientDetailObj.courttreatmentcode;
+        clientDetail.dayplace = clientDetailObj.dayplace;
+        clientDetail.dd = clientDetailObj.dd;
+        clientDetail.deldate = clientDetailObj.deldate;
+        clientDetail.destrfreq = clientDetailObj.destrfreq;
+        clientDetail.destrsev = clientDetailObj.destrsev;
+        clientDetail.detcode = clientDetailObj.detcode;
+        clientDetail.detdate = clientDetailObj.detdate;
+        clientDetail.dfi_cfi_enroll = clientDetailObj.dfi_cfi_enroll;
+        clientDetail.dfscaseid = clientDetailObj.dfscaseid;
+        clientDetail.diag = clientDetailObj.diag;
+        clientDetail.diet = clientDetailObj.diet;
+        clientDetail.disch_date = clientDetailObj.disch_date;
+        clientDetail.disch_reason = clientDetailObj.disch_reason;
+        clientDetail.disch_time = clientDetailObj.disch_time;
+        clientDetail.discsum = clientDetailObj.discsum;
+        clientDetail.disrfreq = clientDetailObj.disrfreq;
+        clientDetail.disrsev = clientDetailObj.disrsev;
+        clientDetail.dol_adjuca = clientDetailObj.dol_adjuca;
+        clientDetail.dressing = clientDetailObj.dressing;
+        clientDetail.dsm4axis1 = clientDetailObj.dsm4axis1;
+        clientDetail.dsm4axis2 = clientDetailObj.dsm4axis2;
+        clientDetail.dsm4axis3 = clientDetailObj.dsm4axis3;
+        clientDetail.dsm4axis4 = clientDetailObj.dsm4axis4;
+clientDetail.dsm4sofa = clientDetailObj.dsm4sofa;
+clientDetail.dsmdiag = clientDetailObj.dsmdiag;
+clientDetail.eating = clientDetailObj.eating;
+clientDetail.educalvl = clientDetailObj.educalvl;
+clientDetail.employer = clientDetailObj.employer;
+clientDetail.empnohrs = clientDetailObj.empnohrs;
+clientDetail.emptype = clientDetailObj.emptype;
+clientDetail.ethnic =  clientDetailObj.ethnic;
+clientDetail.excaseman = clientDetailObj.excaseman;
+clientDetail.eyecolor = clientDetailObj.eyecolor;
+clientDetail.funpresnt = clientDetailObj.funpresnt;
+clientDetail.funvision = clientDetailObj.funvision;
+clientDetail.gdnstat = clientDetailObj.gdnstat;
+clientDetail.grooming = clientDetailObj.grooming;
+clientDetail.group1 = clientDetailObj.group1;
+clientDetail.group2 = clientDetailObj.group2;
+clientDetail.haircolor = clientDetailObj.haircolor;
+clientDetail.health = clientDetailObj.health;
+clientDetail.hearing = clientDetailObj.hearing;
+clientDetail.height = clientDetailObj.height;
+clientDetail.hiredate = clientDetailObj.hiredate;
+clientDetail.hispanicorigincode = clientDetailObj.hispanicorigincode;
+clientDetail.homepresnt = clientDetailObj.homepresnt;
+clientDetail.homevision = clientDetailObj.homevision;
+clientDetail.homewaiver = clientDetailObj.homewaiver;
+clientDetail.hphone = clientDetailObj.hphone;
+clientDetail.hospitalpref  = clientDetailObj.hospitalpref;
+clientDetail.hrlyrate = clientDetailObj.hrlyrate;
+clientDetail.idmarks = clientDetailObj.idmarks;
+clientDetail.incnote = clientDetailObj.incnote;
+clientDetail.insval = clientDetailObj.insval;
+clientDetail.intakestat = clientDetailObj.intakestat;
+clientDetail.interpsvccode = clientDetailObj.interpsvccode;
+clientDetail.ippdate = clientDetailObj.ippdate;
+clientDetail.is_current = clientDetailObj.is_current;
+clientDetail.is_uscitz = clientDetailObj.is_uscitz;
+clientDetail.langspok = clientDetailObj.langspok;
+clientDetail.langus = clientDetailObj.langus;
+clientDetail.lastpdp = clientDetailObj.lastpdp;
+clientDetail.lastplace = clientDetailObj.lastplace;
+clientDetail.legalcomp = clientDetailObj.legalcomp;
+clientDetail.lernpresnt = clientDetailObj.lernpresnt;
+clientDetail.lernvision = clientDetailObj.lernvision;
+clientDetail.livunit_key = clientDetailObj.livunit_key;
+clientDetail.location = clientDetailObj.location;
+        clientDetail.maidnm = clientDetailObj.maidnm;
+clientDetail.marital = clientDetailObj.marital;
+clientDetail.meal = clientDetailObj.meal;
+clientDetail.medadapt = clientDetailObj.medadapt;
+clientDetail.medalert = clientDetailObj.medalert;
+clientDetail.medicaid = clientDetailObj.medicaid;
+clientDetail.medicare = clientDetailObj.medicare;
+clientDetail.mentfunc = clientDetailObj.mentfunc;
+clientDetail.milstatcode = clientDetailObj.milstatcode;
+clientDetail.mmaidname = clientDetailObj.mmaidname;
+clientDetail.mobassist = clientDetailObj.mobassist;
+clientDetail.mobility = clientDetailObj.mobility;
+clientDetail.mr = clientDetailObj.mr;
+clientDetail.namerele = clientDetailObj.namerele;
+clientDetail.nextpdp = clientDetailObj.nextpdp;
+clientDetail.notepad = clientDetailObj.notepad;
+clientDetail.obj_met = clientDetailObj.obj_met;
+clientDetail.offfreq = clientDetailObj.offfreq;
+clientDetail.offsev = clientDetailObj.offsev;
+clientDetail.olades1 = clientDetailObj.olades1;
+clientDetail.olades2 = clientDetailObj.olades2;
+clientDetail.olades3 = clientDetailObj.olades3;
+clientDetail.olades4 = clientDetailObj.olades4;
+clientDetail.olades5 = clientDetailObj.olades5;
+clientDetail.olaval1 = clientDetailObj.olaval1;
+clientDetail.olaval2 = clientDetailObj.olaval2;
+clientDetail.olaval3 = clientDetailObj.olaval3;
+clientDetail.olaval4 = clientDetailObj.olaval4;
+clientDetail.olaval5 = clientDetailObj.olaval5;
+clientDetail.oth2presnt = clientDetailObj.oth2presnt;
+clientDetail.oth2vision = clientDetailObj.oth2vision;
+clientDetail.oth3presnt = clientDetailObj.oth3presnt;
+clientDetail.oth3vision = clientDetailObj.oth3vision;
+clientDetail.othrace = clientDetailObj.othrace;
+clientDetail.othragencies = clientDetailObj.othragencies;
+clientDetail.othrfreq = clientDetailObj.othrfreq;
+clientDetail.othrpresnt = clientDetailObj.othrpresnt;
+clientDetail.othrsev = clientDetailObj.othrsev;
+clientDetail.othrvision = clientDetailObj.othrvision;
+clientDetail.palspresnt = clientDetailObj.palspresnt;
+clientDetail.palsvision = clientDetailObj.palsvision;
+clientDetail.payamt = clientDetailObj.payamt;
+clientDetail.paymonth = clientDetailObj.paymonth;
+clientDetail.pd = clientDetailObj.pd;
+clientDetail.photoclr = clientDetailObj.photoclr;
+clientDetail.physician = clientDetailObj.physician;
+clientDetail.picafreq = clientDetailObj.picafreq;
+clientDetail.picasev = clientDetailObj.picasev;
+clientDetail.picfilename = clientDetailObj.picfilename;
+clientDetail.picture = clientDetailObj.picture;
+clientDetail.pictureext = clientDetailObj.pictureext;
+clientDetail.plotval = clientDetailObj.plotval;
+clientDetail.propval = clientDetailObj.propval;
+clientDetail.provision = clientDetailObj.provision;
+clientDetail.publicaidid = clientDetailObj.publicaidid;
+clientDetail.recstsupp = clientDetailObj.recstsupp;
+clientDetail.regcount = clientDetailObj.regcount;
+clientDetail.regdate = clientDetailObj.regdate;
+clientDetail.regrescode = clientDetailObj.regrescode;
+clientDetail.religion = clientDetailObj.religion;
+clientDetail.relig_note = clientDetailObj.relig_note;
+clientDetail.reppayee = clientDetailObj.reppayee;
+clientDetail.reptfreq = clientDetailObj.reptfreq;
+clientDetail.reptsev = clientDetailObj.reptsev;
+clientDetail.rep_payee = clientDetailObj.rep_payee;
+clientDetail.resplace = clientDetailObj.resplace;
+clientDetail.resprior = clientDetailObj.resprior;
+clientDetail.resp_key = clientDetailObj.resp_key;
+clientDetail.revduedate = clientDetailObj.revduedate;
+clientDetail.revfirst = clientDetailObj.revfirst;
+clientDetail.revlast = clientDetailObj.revlast;
+clientDetail.ROCSDD_DnLoad = clientDetailObj.ROCSDD_DnLoad;
+clientDetail.ROCS_DnLoad = clientDetailObj.ROCS_DnLoad;
+clientDetail.ROCS_UpLoad = clientDetailObj.ROCS_UpLoad;
+clientDetail.seizure = clientDetailObj.seizure;
+clientDetail.selffreq = clientDetailObj.selffreq;   
+
+
+
+
+
+        return clientDetail;
+    }
+
+}

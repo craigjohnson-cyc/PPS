@@ -1,0 +1,156 @@
+﻿@page "/Client/Display/{clientId:int}"
+@inject NavigationManager NavigationManager
+@inject IClientService ClientService
+@rendermode InteractiveAuto
+
+
+
+<h3>Display Client</h3>
+
+<br />
+<br />
+<p>Client Key is @clientId</p>
+
+@if(client == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="client" FormName="editClient" OnValidSubmit="UpdateClient">
+        <DataAnnotationsValidator></DataAnnotationsValidator>    
+        <ValidationSummary></ValidationSummary>
+
+        <InputNumber @bind-Value="client.client_key" hidden></InputNumber>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Client Number</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.clientno" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">First Name</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.fname" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Middle Name</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.mname" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Last Name</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.lname" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Also Known As</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.aka" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Address</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.address" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Address 2</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.address2" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">City</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.city" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">State</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.state" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Zip</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.zip" class="form-control" @bind="@canEdit"></InputText>
+            </div>
+        </div>
+        @if (canEdit)
+        {
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a href="/Client/List" type="button" class="btn btn-primary">Close</a>
+        }
+
+    </EditForm>
+    
+}
+
+
+
+
+
+<br />
+<br />
+<a href="/Client/List" type="button" class="btn btn-primary">Back to Client List</a>
+<a href="/Client/List" type="button" class="btn btn-secondary">Dislay Client Details</a>
+<a href="/Client/List" type="button" class="btn btn-secondary">Display Client Financials</a>
+
+
+@code {
+    [Parameter]
+    public int clientId { get; set; }
+
+    [SupplyParameterFromForm]
+    private Client? client { get; set; }
+
+    public bool canEdit { get; set; } = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //client = await Http.GetFromJsonAsync<Client>("Clients/" + this.clientId.ToString().Trim());
+        client = await ClientService.GetClient(this.clientId);
+    }
+
+
+    private async void UpdateClient()
+    {
+    
+    }
+}

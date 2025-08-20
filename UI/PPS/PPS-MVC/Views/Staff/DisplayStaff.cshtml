@@ -1,0 +1,66 @@
+﻿@using DataModels.Models.Entities
+@{
+    ViewData["Title"] = "PPS - Staff List";
+}
+
+@model List<StaffList> // System.Data.DataTable<Staff>
+
+@* Staff List    *@        
+    <div class="text-center">
+        <h1 class="display-4">Personal Planning - Staff List</h1>
+        <a asp-action="AddStaff" class="btn btn-primary">Add Staff</a>
+        <a asp-action="allStaff" class="btn btn-primary">View all Current Staff</a>
+        <a asp-action="OnlyCurrentStaff" class="btn btn-primary">View only Current Staff</a>
+        <a asp-action="OnlyNonCurrentStaff" class="btn btn-primary">View Non-Current Staff</a>
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Position
+                    </th>
+                    <th>
+                        Current
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            @{
+                foreach (var staff in Model)
+                {
+                        <tr>
+                            <td>
+                            @staff.ffirst
+                            </td>
+                            <td>
+                            @staff.llast
+                            </td>
+                            <td>
+                            @staff.positionn
+                            </td>
+                            <td>
+                            @staff.is_current
+                            </td>
+                            <td>
+                                <a asp-action="DisplayStaffDetails" asp-controller="Staff" asp-route-id="@staff.staff_key">View Details</a>
+                            </td>
+                        </tr>
+                }
+            }
+            </tbody>
+
+        </table>
+
+
+        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+@* } *@

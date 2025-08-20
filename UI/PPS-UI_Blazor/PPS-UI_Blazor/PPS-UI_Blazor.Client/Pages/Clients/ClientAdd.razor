@@ -1,0 +1,136 @@
+﻿@page "/Client/Add" 
+@inject NavigationManager NavigationManager
+@inject IClientService ClientService
+@rendermode InteractiveAuto
+
+<h3>Add Client</h3>
+
+    <EditForm Model="client" FormName="addClient" OnValidSubmit="AddClient">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <ValidationSummary></ValidationSummary>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Client Number</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.clientno" class="form-control"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">First Name</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.fname" class="form-control"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Middle Name</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.mname" class="form-control"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Last Name</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.lname" class="form-control"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Also Known As</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.aka" class="form-control"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Address</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.address" class="form-control"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Address 2</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.address2" class="form-control"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">City</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.city" class="form-control"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">State</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.state" class="form-control"></InputText>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Zip</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="client.zip" class="form-control"></InputText>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a href="/Client/List" type="button" class="btn btn-primary">Close</a>
+    </EditForm>
+
+
+
+@code {
+
+    public int clientId { get; set; }
+
+    [SupplyParameterFromForm]
+    private Client client { get; set; } = new Client();
+
+
+
+    protected override void OnParametersSet()
+    {
+        //Get last client key   Why do we need this?  This should be handled by the API
+        //clientId = 3;
+    }
+
+    private async void AddClient()
+    {
+        //Add/Post Client
+        if (client != null)
+        {
+            //Call API to post client
+            HttpResponseMessage httpResponse = await ClientService.AddClient(client);
+            if(httpResponse.IsSuccessStatusCode)
+            {
+                //Redirect to Client List
+                NavigationManager.NavigateTo("/Client/List");
+            }
+        }
+    }
+}

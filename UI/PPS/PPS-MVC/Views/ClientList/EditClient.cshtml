@@ -1,0 +1,46 @@
+﻿@using DataModels.Models.Entities
+@{
+    ViewData["Title"] = "Personal Planning - Add / Edit Client";
+}
+
+@model Client
+
+<div class="text-center">
+    <h1 class="display-4">Create or Edit Client</h1>
+</div>
+
+<form asp-action="CreateEditClientForm" asp-controller="Home">
+
+    <label class="visually-hidden">client key</label>
+    <input class="visually-hidden" type="text" placeholder="" asp-for="client_key" />
+
+    <label class="mt-4">client number</label>
+    <input class="form-control" type="text" placeholder="" asp-for="clientno" />
+
+    <label class="mt-4">first name</label>
+    <input class="form-control" type="text" placeholder="enter first name" asp-for="fname" />
+
+    <label class="mt-4">middle name</label>
+    <input class="form-control" type="text" placeholder="enter middle name" asp-for="mname" />
+
+    <label class="mt-4">last name</label>
+    <input class="form-control" type="text" placeholder="enter last name" asp-for="lname" />
+
+    <label class="mt-4">also known as</label>
+    <input class="form-control" type="text" placeholder="enter also known as" asp-for="aka" />
+
+    <label class="mt-4">address</label>
+    <input class="form-control" type="text" placeholder="enter address" asp-for="address" />
+    <input class="form-control" type="text" placeholder="  address continued" asp-for="address2" />
+
+    <label class="mt-4">city</label>
+    <input class="form-control" type="text" placeholder="enter city" asp-for="city" />
+
+    <label class="mt-4">state</label>
+    <input class="form-control" type="text" placeholder="enter state" asp-for="state" />
+
+    <label class="mt-4">Zip Code</label>
+    <input class="form-control" type="text" placeholder="enter zip code" asp-for="zip" />
+
+    <button class="btn btn-primary mt-4" asp-action="UpdateClient" asp-route-id="client_key">Save</button>
+</form>

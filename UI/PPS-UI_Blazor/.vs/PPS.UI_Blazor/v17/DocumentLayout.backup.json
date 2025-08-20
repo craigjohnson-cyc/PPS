@@ -1,0 +1,328 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E4C5AD0F-D0F2-497B-BE3A-CBCCF20B62D5}|..\\..\\DataModels\\DataModels.csproj|c:\\users\\lenovo\\source\\repos\\pps\\datamodels\\models\\viewmodels\\clientdetailview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\pages\\clientdetails\\clientdetailsdisplay.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\pages\\clientdetails\\clientdetailsdisplay.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\pages\\clients\\clientdisplay.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\pages\\clients\\clientdisplay.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\pages\\clients\\clientedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\pages\\clients\\clientedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\pages\\clientdetails\\clientdetailsadd.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\pages\\clientdetails\\clientdetailsadd.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4C5AD0F-D0F2-497B-BE3A-CBCCF20B62D5}|..\\..\\DataModels\\DataModels.csproj|c:\\users\\lenovo\\source\\repos\\pps\\datamodels\\helpers\\ppsfunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\pages\\clients\\clientlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\pages\\clients\\clientlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\pages\\clients\\clientadd.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\pages\\clients\\clientadd.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4C5AD0F-D0F2-497B-BE3A-CBCCF20B62D5}|..\\..\\DataModels\\DataModels.csproj|c:\\users\\lenovo\\source\\repos\\pps\\datamodels\\models\\entities\\clientdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4C5AD0F-D0F2-497B-BE3A-CBCCF20B62D5}|..\\..\\DataModels\\DataModels.csproj|c:\\users\\lenovo\\source\\repos\\pps\\datamodels\\extensionmethods\\extensionmethods.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\services\\clientdetailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\services\\clientdetailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\services\\iclientdetailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\services\\iclientdetailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\services\\iclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\services\\iclientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\services\\clientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\services\\clientservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4C5AD0F-D0F2-497B-BE3A-CBCCF20B62D5}|..\\..\\DataModels\\DataModels.csproj|c:\\users\\lenovo\\source\\repos\\pps\\datamodels\\models\\picklist\\responsibleperson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\controls\\clientlistitemcomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\controls\\clientlistitemcomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\controls\\clientlisttablecomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\controls\\clientlisttablecomponent.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor.client\\pages\\clientdetails\\clientdetailsedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39152F39-52F6-40E6-B4C5-026C51738769}|PPS-UI_Blazor\\PPS-UI_Blazor.Client\\PPS-UI_Blazor.Client.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor.client\\pages\\clientdetails\\clientdetailsedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0AB64CE0-7470-4B98-B308-60A848D97DB4}|PPS-UI_Blazor\\PPS-UI_Blazor\\PPS.UI_Blazor.csproj|c:\\users\\lenovo\\source\\repos\\pps\\ui\\pps-ui_blazor\\pps-ui_blazor\\pps-ui_blazor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0AB64CE0-7470-4B98-B308-60A848D97DB4}|PPS-UI_Blazor\\PPS-UI_Blazor\\PPS.UI_Blazor.csproj|solutionrelative:pps-ui_blazor\\pps-ui_blazor\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 145,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClientDisplay.razor",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientDisplay.razor",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientDisplay.razor",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientDisplay.razor",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientDisplay.razor",
+              "ViewState": "AgIAAHgAAAAAAAAAAADwv5kAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-14T19:33:28.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ExtensionMethods.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\ExtensionMethods\\ExtensionMethods.cs",
+              "RelativeDocumentMoniker": "..\\..\\DataModels\\ExtensionMethods\\ExtensionMethods.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\ExtensionMethods\\ExtensionMethods.cs",
+              "RelativeToolTip": "..\\..\\DataModels\\ExtensionMethods\\ExtensionMethods.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAIApwBYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T21:03:25.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ClientDetail.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Models\\Entities\\ClientDetail.cs",
+              "RelativeDocumentMoniker": "..\\..\\DataModels\\Models\\Entities\\ClientDetail.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Models\\Entities\\ClientDetail.cs",
+              "RelativeToolTip": "..\\..\\DataModels\\Models\\Entities\\ClientDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T20:50:55.318Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PPSFunctions.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Helpers\\PPSFunctions.cs",
+              "RelativeDocumentMoniker": "..\\..\\DataModels\\Helpers\\PPSFunctions.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Helpers\\PPSFunctions.cs",
+              "RelativeToolTip": "..\\..\\DataModels\\Helpers\\PPSFunctions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T20:30:51.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IClientDetailService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\IClientDetailService.cs",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\IClientDetailService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\IClientDetailService.cs",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\IClientDetailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T17:08:22.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ClientDetailService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\ClientDetailService.cs",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\ClientDetailService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\ClientDetailService.cs",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\ClientDetailService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAIAowBgAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T17:07:50.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ResponsiblePerson.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Models\\PickList\\ResponsiblePerson.cs",
+              "RelativeDocumentMoniker": "..\\..\\DataModels\\Models\\PickList\\ResponsiblePerson.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Models\\PickList\\ResponsiblePerson.cs",
+              "RelativeToolTip": "..\\..\\DataModels\\Models\\PickList\\ResponsiblePerson.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T13:54:14.156Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ClientDetailView.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Models\\ViewModels\\ClientDetailView.cs",
+              "RelativeDocumentMoniker": "..\\..\\DataModels\\Models\\ViewModels\\ClientDetailView.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\DataModels\\Models\\ViewModels\\ClientDetailView.cs",
+              "RelativeToolTip": "..\\..\\DataModels\\Models\\ViewModels\\ClientDetailView.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T21:16:50.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ClientDetailsEdit.razor",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsEdit.razor",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsEdit.razor",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsEdit.razor",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsEdit.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T19:49:58.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ClientAdd.razor",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientAdd.razor",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientAdd.razor",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientAdd.razor",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientAdd.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-22T14:00:39.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ClientDetailsDisplay.razor",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsDisplay.razor",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsDisplay.razor",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsDisplay.razor",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsDisplay.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T19:49:34.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ClientDetailsAdd.razor",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsAdd.razor",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsAdd.razor",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsAdd.razor",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\ClientDetails\\ClientDetailsAdd.razor",
+              "ViewState": "AgIAANsJAAAAAAAAAADwv+gJAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T19:48:39.063Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ClientList.razor",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientList.razor",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientList.razor",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientList.razor",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientList.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-21T20:17:20.268Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IClientService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\IClientService.cs",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\IClientService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\IClientService.cs",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\IClientService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T18:41:38.133Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ClientService.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\ClientService.cs",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\ClientService.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\ClientService.cs",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Services\\ClientService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T17:58:31.864Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ClientEdit.razor",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientEdit.razor",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientEdit.razor",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientEdit.razor",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Pages\\Clients\\ClientEdit.razor",
+              "ViewState": "AgIAAHgAAAAAAAAAAIApwI8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-22T17:30:00.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor\\Program.cs",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor\\Program.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor\\Program.cs",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T21:28:54.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ClientListItemComponent.razor",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Controls\\ClientListItemComponent.razor",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Controls\\ClientListItemComponent.razor",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Controls\\ClientListItemComponent.razor",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Controls\\ClientListItemComponent.razor",
+              "ViewState": "AgIAABAAAAAAAAAAAAAwwCsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-21T20:39:54.126Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ClientListTableComponent.razor",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Controls\\ClientListTableComponent.razor",
+              "RelativeDocumentMoniker": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Controls\\ClientListTableComponent.razor",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Controls\\ClientListTableComponent.razor",
+              "RelativeToolTip": "PPS-UI_Blazor\\PPS-UI_Blazor.Client\\Controls\\ClientListTableComponent.razor",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAhwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-21T20:19:36.152Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

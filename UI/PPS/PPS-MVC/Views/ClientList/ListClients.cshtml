@@ -1,0 +1,78 @@
+﻿@using DataModels.Models.Entities
+@{
+    ViewData["Title"] = "PPS - Client List";
+}
+
+@model List<Client> // System.Data.DataTable<Client>
+
+@* @section MainPage
+    {
+ *@        <div class="text-center">
+            <h1 class="display-4">Personal Planning</h1>
+            <br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            City
+                        </th>
+                        <th>
+                            State
+                        </th>
+                        <th>
+                            Zip
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                @{
+                    foreach (var client in Model)
+                    {
+                            <tr>
+                                <td>
+                                @client.fname
+                                </td>
+                                <td>
+                                @client.lname
+                                </td>
+                                <td>
+                                @client.address
+                                </td>
+                                <td>
+                                @client.city
+                                </td>
+                                <td>
+                                @client.state
+                                </td>
+                                <td>
+                                @client.zip
+                                </td>
+                                <td>
+                                    <a asp-action="DisplayClientDetails" asp-controller="ClientDetail" asp-route-id="@client.client_key">Select</a>
+                                    <a asp-action="EditClient" asp-route-id="@client.client_key">Edit</a>
+                                    <a asp-action="DeleteClient" asp-route-id="@client.client_key">Delete</a>
+                                </td>
+                            </tr>
+                    }
+                }
+                </tbody>
+
+            </table>
+
+            <a asp-action="EditClient" class="btn btn-primary">Add Client</a>
+
+            <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        </div>
+@* } *@

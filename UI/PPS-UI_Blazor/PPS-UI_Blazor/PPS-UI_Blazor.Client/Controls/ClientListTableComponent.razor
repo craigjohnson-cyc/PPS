@@ -1,0 +1,54 @@
+﻿
+@inject IClientService ClientService
+
+@if (clients == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Client Number</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Also Known As</th>
+                <th>Address</th>
+                <th>Address 2</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in clients)
+            {
+                <ClientListItemComponent Client="client" />    
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    List<@Client> clients;
+
+    protected override void OnInitialized()
+    {
+        //clients = new List<Client>();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        //List<Client> clients = await Http.GetFromJsonAsync<List<Client>>("Clients");
+        
+        clients = await ClientService.GetClients();
+        //StateHasChanged();
+        await base.OnInitializedAsync();
+    }
+
+
+}

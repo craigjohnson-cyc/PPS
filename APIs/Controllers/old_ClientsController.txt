@@ -1,0 +1,171 @@
+﻿//using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Mvc;
+//using ClientsApi.Data;
+//using System.Text;
+//using System.Text.Json;
+//using Swashbuckle.AspNetCore.SwaggerGen;
+//using Microsoft.AspNetCore.Mvc.Infrastructure;
+//using Microsoft.Extensions.Options;
+//using System.Reflection.PortableExecutable;
+//using Microsoft.AspNetCore.Http.HttpResults;
+//using DataModels.Models.Entities;
+
+//namespace ClientsApi.Controllers
+//{
+//    [ApiController]
+//    [Route("api/[controller]/[action]")]
+//    public class ClientsController : ControllerBase
+//    {
+//        private ApiContext _context;  // DB
+
+//        public ClientsController(ApiContext context)
+//        {
+//            _context = context;
+//        }
+
+
+//        // Create/Edit
+//        //[HttpPost]
+//        public async Task<JsonResult> PostNewClient()
+//        {
+//            var options = new JsonSerializerOptions
+//            {
+//                PropertyNameCaseInsensitive = true
+//            };
+//            // the LoadTestData routine is a very klugie way of adding test data
+//            // and should be replaced when a better data store is used.
+//            //******************************************************************
+//            LoadTestData();
+
+//            var reader = new StreamReader(Request.Body);
+//            var postData = reader.ReadToEndAsync().Result;
+//            var newClient = JsonSerializer.Deserialize<Client>(postData, options);
+//            if (newClient is null)
+//            {
+//                Console.WriteLine("     ***  StreamReader(HttpContext.Request.Body) produced null obj");
+//            }
+
+//            //Client newClient = new Client
+//            //{
+//            //    client_key = recData.client_key,
+//            //    client_no = recData.client_no,
+//            //    fname = recData.fname,
+//            //    mname = recData.mname,
+//            //    lname = recData.lname,
+//            //    aka = recData.aka,
+//            //    address = recData.address,
+//            //    address2 = recData.address2,
+//            //    city = recData.city,
+//            //    state = recData.state,
+//            //    zip = recData.zip
+//            //};
+
+//            _context.Clients.Add(newClient);
+//            var id = newClient.client_key;
+//            _context.SaveChanges();
+//            var result = _context.Clients.Find(id);
+
+//            return new JsonResult(Ok(result));
+//        }
+
+//        // Get
+//        //[HttpGet]
+//        public JsonResult GetClient()
+//        {
+//            // the LoadTestData routine is a very klugie way of adding test data
+//            // and should be replaced when a better data store is used.
+//            //******************************************************************
+//            LoadTestData();
+//            var reader = new StreamReader(Request.Body);
+//            var postData = reader.ReadToEndAsync().Result;
+//            int id = int.Parse(postData);
+//            Client foundClient = _context.Clients.Find(id);
+
+//            if (foundClient == null)
+//                return new JsonResult(NotFound());
+
+//            return new JsonResult(Ok(foundClient));
+//        }
+
+//        // Delete
+//        //[HttpDelete]
+//        public JsonResult DeleteClient()
+//        {
+//            var reader = new StreamReader(Request.Body);
+//            var postData = reader.ReadToEndAsync().Result;
+//            int id = int.Parse(postData);
+//            var result = _context.Clients.Find(id);
+
+//            if (result == null)
+//                return new JsonResult(NotFound());
+
+//            _context.Clients.Remove(result);
+//            _context.SaveChanges();
+
+//            return new JsonResult(NoContent());
+
+//        }
+
+//        // Get All
+//        [HttpGet()]
+//        //public JsonResult GetAll()
+//        public IEnumerable<Client> GetAll()
+//        {
+//            // the LoadTestData routine is a very klugie way of adding test data
+//            // and should be replaced when a better data store is used.
+//            //******************************************************************
+//            LoadTestData();
+           
+//            //var result = _context.Clients.ToList();
+
+//            //return new JsonResult(Ok(result));
+//            return _context.Clients.ToList();
+//        }
+
+        
+//    private void LoadTestData()
+//        {
+//            // if DB is empty, add mouse and Squirel
+//            var list = _context.Clients.ToList();
+//            if (list.Count == 0)
+//            {
+
+//                Client mouse = new Client
+//                {
+//                    client_no = "",
+//                    client_key = 1,
+//                    fname = "Mickey",
+//                    mname = "",
+//                    lname = "Mouse",
+//                    aka = "",
+//                    address = "9728 Cortez Dr.",
+//                    address2 = "",
+//                    city = "Knoxville",
+//                    state = "TN",
+//                    zip = "37923"
+//                };
+
+//                Client duck = new Client
+//                {
+//                    client_no = "",
+//                    client_key = 2,
+//                    fname = "Donald",
+//                    mname = "",
+//                    lname = "Duck",
+//                    aka = "",
+//                    address = "9728 Cortez Dr.",
+//                    address2 = "",
+//                    city = "Knoxville",
+//                    state = "TN",
+//                    zip = "37923"
+//                };
+
+//                _context.Clients.Add(mouse);
+//                _context.Clients.Add(duck);
+//                _context.SaveChanges();
+//            }
+//        }
+
+//    }
+
+//}

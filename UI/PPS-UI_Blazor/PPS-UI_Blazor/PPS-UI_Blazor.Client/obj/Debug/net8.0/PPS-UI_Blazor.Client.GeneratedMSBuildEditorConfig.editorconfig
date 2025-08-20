@@ -1,0 +1,79 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = PPS-UI_Blazor.Client
+build_property.RootNamespace = PPS-UI_Blazor.Client
+build_property.ProjectDir = C:\Users\Lenovo\source\repos\PPS\UI\PPS-UI_Blazor\PPS-UI_Blazor\PPS-UI_Blazor.Client\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Lenovo\source\repos\PPS\UI\PPS-UI_Blazor\PPS-UI_Blazor\PPS-UI_Blazor.Client
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Controls/ClientAddEditComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29udHJvbHNcQ2xpZW50QWRkRWRpdENvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Controls/ClientComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29udHJvbHNcQ2xpZW50Q29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Controls/ClientListItemComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29udHJvbHNcQ2xpZW50TGlzdEl0ZW1Db21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Controls/ClientListTableComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29udHJvbHNcQ2xpZW50TGlzdFRhYmxlQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Controls/SearchBarComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29udHJvbHNcU2VhcmNoQmFyQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Pages/ClientDetails/ClientDetailsAdd.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50RGV0YWlsc1xDbGllbnREZXRhaWxzQWRkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Pages/ClientDetails/ClientDetailsDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50RGV0YWlsc1xDbGllbnREZXRhaWxzRGlzcGxheS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Pages/ClientDetails/ClientDetailsEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50RGV0YWlsc1xDbGllbnREZXRhaWxzRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Pages/Clients/ClientAdd.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xDbGllbnRBZGQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Pages/Clients/ClientDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xDbGllbnREaXNwbGF5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Pages/Clients/ClientEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xDbGllbnRFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Pages/Clients/ClientList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50c1xDbGllbnRMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/source/repos/PPS/UI/PPS-UI_Blazor/PPS-UI_Blazor/PPS-UI_Blazor.Client/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 

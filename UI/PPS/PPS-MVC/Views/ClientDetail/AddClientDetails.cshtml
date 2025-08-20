@@ -1,0 +1,2111 @@
+﻿@using DataModels.Models.DTOs
+@using DataModels.Models.PickList
+@using DataModels.Models.ViewModels
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using Microsoft.AspNetCore.Html
+@{
+    ViewData["Title"] = "Personal Planning - Client Details";
+}
+
+@model ClientDetailView
+
+<div class="text-center">
+    <h1 class="display-4">Client Details</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Also Known As
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                <tr>
+                    <td>
+                        @Model.client.fname
+                    </td>
+                    <td>
+                        @Model.client.lname
+                    </td>
+                    <td>
+                        @Model.client.aka
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+
+<hr />
+
+<label class="visually-hidden">client detail key</label>
+<input class="visually-hidden" type="text" placeholder="" asp-for="@Model.clientDetail.clientDetail_key" />
+
+<label class="visually-hidden">client key</label>
+<input class="visually-hidden" type="text" placeholder="" asp-for="@Model.clientDetail.client_key" />
+
+
+<p>
+    <label class="mt-4">
+        Social Security Number
+        @Html.TextBoxFor(Model => Model.clientDetail.ssn, new { value = "enter social security number" })
+    </label>
+    @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter social security number" asp-for="@Model.clientDetail.ssn" /> *@
+
+    <label class="mt-4">
+        Date Admitted
+        @Html.EditorFor(Model => Model.clientDetail.admitted, new { value = "enter admitted date" })
+        @Html.ValidationMessageFor(model => model.clientDetail.admitted)
+    </label>
+    @*     @Html.EditorFor(model => model.clientDetail.admitted, new object())
+    @* <input class="form-control" type="date" disabled="disabled" Placeholder="enter date admitted" asp-for="@Model.clientDetail.admitted" /> *@
+
+
+    <label class="mt-4">
+        Gender
+        @Html.TextBoxFor(Model => Model.clientDetail.sex, new { value = "enter gender" })
+        @* <input class="form-control" type="TextBoxFor" disabled="disabled" Placeholder="enter gender" asp-for="@Model.clientDetail.sex" /> *@
+    </label>
+
+    <label class="mt-4">
+        Maiden Name
+        @Html.TextBoxFor(Model => Model.clientDetail.maidnm, new { value = "enter maiden name" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter maiden name" asp-for="@Model.clientDetail.maidnm" /> *@
+    </label>
+</p>
+<p>
+    <label class="mt-4">
+        Home Phone
+        @Html.TextBoxFor(Model => Model.clientDetail.hphone, new { value = "enter home phone number" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter home phone number" asp-for="@Model.clientDetail.hphone" /> *@
+    </label>
+
+    <label class="mt-4">
+        Work Phone
+        @Html.TextBoxFor(Model => Model.clientDetail.wphone, new { value = "enter work phone number" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter work phone number" asp-for="@Model.clientDetail.wphone" /> *@
+    </label>
+
+    <label class="mt-4">
+        Extension
+        @Html.TextBoxFor(Model => Model.clientDetail.wphonext, new { value = "enter work phone number" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter work phone extension" asp-for="@Model.clientDetail.wphonext  " /> *@
+    </label>
+
+    @{
+        var maritalStatus = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "MARITAL")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                maritalStatus.Add(pkItem);
+            }
+        }
+    }
+
+    <label class="mt-4">
+        Marital Status
+        @Html.DropDownListFor(model => model.clientDetail.marital, maritalStatus)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.marital, new {  value = "enter marital status" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter nmarital status" asp-for="@Model.clientDetail.marital" /> *@
+    </label>
+</p>
+<p>
+    <label class="mt-4">
+        Birthday
+        @Html.EditorFor(Model => Model.clientDetail.birthday, new { value = "enter birthday" })
+        @Html.ValidationMessageFor(model => model.clientDetail.birthday)
+        @* <input class="form-control" type="date" disabled="disabled" Placeholder="enter state" asp-for="@Model.clientDetail.birthday" /> *@
+    </label>
+
+    <label class="mt-4">
+        Billing ID
+        @Html.TextBoxFor(Model => Model.clientDetail.bill_id, new { value = "enter billing id" })
+    </label>
+
+    <label class="mt-4">
+        Billing Code
+        @Html.TextBoxFor(Model => Model.clientDetail.bill_code, new { value = "enter billing code" })
+    </label>
+</p>
+<p>
+    <label class="mt-4">
+        Group1
+        @Html.TextBoxFor(Model => Model.clientDetail.group1, new { value = "enter group 1" })
+    </label>
+
+    <label class="mt-4">
+        Group2
+        @Html.TextBoxFor(Model => Model.clientDetail.group2, new { value = "enter group 2" })
+    </label>
+
+    @{
+        var residencyCounty = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.COUNTY")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                residencyCounty.Add(pkItem);
+            }
+        }
+    }
+
+    <label class="mt-4">
+        County of Legitimancy
+        @Html.DropDownListFor(model => model.clientDetail.countleg, residencyCounty)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.countleg, new {  value = "enter county of legitimancy" }) *@
+    </label>
+
+    <label class="mt-4">
+        County of Residency
+        @Html.DropDownListFor(model => model.clientDetail.county, residencyCounty)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.county, new {  value = "enter county of residency" }) *@
+    </label>
+</p>
+<p>
+    @{
+        var respPersons = new List<SelectListItem>();
+        foreach (var p in Model.responsiblePersons)
+        {
+            var person = new SelectListItem() { Value = p.staffKey.ToString(), Text = p.staffName };
+            respPersons.Add(person);
+        }
+    }
+    <label class="mt-4">
+        Responsible Person
+        @Html.DropDownListFor(model => model.clientDetail.resp_key, respPersons)
+    </label>
+
+    <label class="mt-4">
+        External Case Manager
+        @Html.TextBoxFor(Model => Model.clientDetail.excaseman, new { value = "enter external case manager" })
+    </label>
+
+    @{
+        var pgmLocations = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.LOCATION")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                pgmLocations.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Program Location
+        @Html.DropDownListFor(model => model.clientDetail.location, pgmLocations)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.location, new {  value = "enter program location" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter program location" asp-for="@Model.clientDetail.location  " /> *@
+    </label>
+
+</p>
+<p>
+    <label class="mt-4">
+        Day Program
+        @Html.TextBoxFor(Model => Model.clientDetail.dayprogram, new { value = "enter day program" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter day program" asp-for="@Model.clientDetail.dayprogram" /> *@
+    </label>
+
+    <label class="mt-4">
+        Medicare
+        @Html.TextBoxFor(Model => Model.clientDetail.medicare, new { value = "enter medicare number" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter medicare number" asp-for="@Model.clientDetail.medicare  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Medicaid
+        @Html.TextBoxFor(Model => Model.clientDetail.medicaid, new { value = "enter medicaid number" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter medicaid" asp-for="@Model.clientDetail.medicaid  " /> *@
+    </label>
+
+    @{
+        var raceValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "RACE")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                raceValues.Add(pkItem);
+            }
+        }
+    }
+
+    <label class="mt-4">
+        Ethnicity
+        @Html.DropDownListFor(model => model.clientDetail.ethnic, raceValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.ethnic, new {  value = "enter ethnicity" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter ethnicity" asp-for="@Model.clientDetail.ethnic " /> *@
+    </label>
+
+</p>
+<p>
+    @{
+        var waiverValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.HOMEWAIVER")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                waiverValues.Add(pkItem);
+            }
+        }
+    }
+
+    <label class="mt-4">
+        Home Waiver
+        @Html.DropDownListFor(model => model.clientDetail.homewaiver, waiverValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.homewaiver, new {  value = "enter homewaiver number" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter home waiver" asp-for="@Model.clientDetail.homewaiver" /> *@
+    </label>
+
+    <label class="mt-4">
+        Recreation Support
+        @Html.TextBoxFor(Model => Model.clientDetail.recstsupp, new { value = "enter recreation support" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.recstsupp " /> *@
+    </label>
+
+    @{
+        var payorValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.REPPAYEE")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                payorValues.Add(pkItem);
+            }
+        }
+    }
+
+    <label class="mt-4">
+        Payor
+        @Html.DropDownListFor(model => model.clientDetail.reppayee, payorValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.reppayee, new {  value = "enter Reppayee" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.reppayee  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Employer
+        @Html.TextBoxFor(Model => Model.clientDetail.employer, new { value = "enter employer" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter Employer" asp-for="@Model.clientDetail.employer  " /> *@
+    </label>
+
+</p>
+<p>
+    <label class="mt-4">
+        Employment Type
+        @Html.TextBoxFor(Model => Model.clientDetail.emptype, new { value = "enter employment type" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter employment type" asp-for="@Model.clientDetail.emptype" /> *@
+    </label>
+
+    <label class="mt-4">
+        Hire Date
+        @Html.EditorFor(Model => Model.clientDetail.hiredate, new { value = "enter hire date" })
+        @Html.ValidationMessageFor(model => model.clientDetail.hiredate)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.hiredate, new {  value = "enter hire date" }) *@
+        @* <input class="form-control" type="date" disabled="disabled" Placeholder="enter hire date" asp-for="@Model.clientDetail.hiredate" /> *@
+    </label>
+
+    <label class="mt-4">
+        Hourly Rate
+        @Html.TextBoxFor(Model => Model.clientDetail.hrlyrate, new { value = "enter hourly rate" })
+        @* <input class="form-control" type="double" disabled="disabled" Placeholder="enter hourly pay rate" asp-for="@Model.clientDetail.hrlyrate  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Transportation Cost
+        @Html.TextBoxFor(Model => Model.clientDetail.costtrans, new { value = "enter transportation cost" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter transportation cost" asp-for="@Model.clientDetail.costtrans " /> *@
+    </label>
+</p>
+<p>
+    <label class="mt-4">
+        Hours Worked per Week
+        @Html.TextBoxFor(Model => Model.clientDetail.empnohrs, new { value = "enter hours worked per week" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter hours worked" asp-for="@Model.clientDetail.empnohrs  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Pay Month?
+        @Html.TextBoxFor(Model => Model.clientDetail.paymonth, new { value = "enter paymonth" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter pay month" asp-for="@Model.clientDetail.paymonth  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Pay Amount
+        @Html.TextBoxFor(Model => Model.clientDetail.payamt, new { value = "enter payamt" })
+        @* <input class="form-control" type="double" disabled="disabled" Placeholder="enter pay amount: rate x hours" asp-for="@Model.clientDetail.payamt " /> *@
+    </label>
+
+    <label class="mt-4">
+        Cost of Tools
+        @Html.TextBoxFor(Model => Model.clientDetail.costtools, new { value = "enter cost of tools" })
+        @* <input class="form-control" type="double" disabled="disabled" Placeholder="enter cost of tools" asp-for="@Model.clientDetail.costtools " /> *@
+    </label>
+</p>
+<p>
+    <label class="mt-4">
+        uimasocsec
+        @Html.TextBoxFor(Model => Model.clientDetail.uimasocsec, new { value = "enter uimasocsec" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter uimasocsec" asp-for="@Model.clientDetail.uimasocsec" /> *@
+    </label>
+
+    <label class="mt-4">
+        uimassi
+        @Html.TextBoxFor(Model => Model.clientDetail.uimassi, new { value = "enter uimassi" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter uimassi" asp-for="@Model.clientDetail.uimassi" /> *@
+    </label>
+
+    <label class="mt-4">
+        uimava
+        @Html.TextBoxFor(Model => Model.clientDetail.uimava, new { value = "enter uimava" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter uimava" asp-for="@Model.clientDetail.uimava " /> *@
+    </label>
+
+    <label class="mt-4">
+        uimatrust
+        @Html.TextBoxFor(Model => Model.clientDetail.uimatrust, new { value = "enter uimatrust" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.uimatrust " /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        uimarb
+        @Html.TextBoxFor(Model => Model.clientDetail.uimarb, new { value = "enter uimarb" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter uimarb" asp-for="@Model.clientDetail.uimarb " /> *@
+    </label>
+
+    <label class="mt-4">
+        uimapen
+        @Html.TextBoxFor(Model => Model.clientDetail.uimapen, new { value = "enter uimapen" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter uimapen" asp-for="@Model.clientDetail.uimapen" /> *@
+    </label>
+
+    <label class="mt-4">
+        uimaint
+        @Html.TextBoxFor(Model => Model.clientDetail.uimaint, new { value = "enter uimaint" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter uimaint" asp-for="@Model.clientDetail.uimaint" /> *@
+    </label>
+
+    <label class="mt-4">
+        uimaothr
+        @Html.TextBoxFor(Model => Model.clientDetail.uimaothr, new { value = "enter uimaothr" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter uimaothr" asp-for="@Model.clientDetail.uimaothr  " /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        incnote
+        @Html.TextBoxFor(Model => Model.clientDetail.incnote, new { value = "enter incnote" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter incnote" asp-for="@Model.clientDetail.incnote" /> *@
+    </label>
+
+    <label class="mt-4">
+        olades1
+        @Html.TextBoxFor(Model => Model.clientDetail.olades1, new { value = "enter olades1" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olades1" asp-for="@Model.clientDetail.olades1" /> *@
+    </label>
+
+    <label class="mt-4">
+        olaval1
+        @Html.TextBoxFor(Model => Model.clientDetail.olaval1, new { value = "enter olaval1" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olaval1" asp-for="@Model.clientDetail.olaval1" /> *@
+    </label>
+</p>
+<p>
+
+    <label class="mt-4">
+        olades2
+        @Html.TextBoxFor(Model => Model.clientDetail.olades2, new { value = "enter olades2" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olades2" asp-for="@Model.clientDetail.olades2" /> *@
+    </label>
+
+
+    <label class="mt-4">
+        olaval2
+        @Html.TextBoxFor(Model => Model.clientDetail.olaval2, new { value = "enter olaval2" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olaval2" asp-for="@Model.clientDetail.olaval2" /> *@
+    </label>
+
+    <label class="mt-4">
+        olades3
+        @Html.TextBoxFor(Model => Model.clientDetail.olades3, new { value = "enter olades3" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olades3" asp-for="@Model.clientDetail.olades3" /> *@
+    </label>
+
+    <label class="mt-4">
+        olaval3
+        @Html.TextBoxFor(Model => Model.clientDetail.olaval3, new { value = "enter olaval3" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olaval3" asp-for="@Model.clientDetail.olaval3" /> *@
+    </label>
+
+
+</p>
+<p>
+    <label class="mt-4">
+        olades4
+        @Html.TextBoxFor(Model => Model.clientDetail.olades4, new { value = "enter olades4" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olades4" asp-for="@Model.clientDetail.olades4" /> *@
+    </label>
+
+    <label class="mt-4">
+        olaval4
+        @Html.TextBoxFor(Model => Model.clientDetail.olaval4, new { value = "enter olaval4" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olaval4" asp-for="@Model.clientDetail.olaval4" /> *@
+    </label>
+
+    <label class="mt-4">
+        olades5
+        @Html.TextBoxFor(Model => Model.clientDetail.olades5, new { value = "enter olades5" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olades5" asp-for="@Model.clientDetail.olades5" /> *@
+    </label>
+
+    <label class="mt-4">
+        olaval5
+        @Html.TextBoxFor(Model => Model.clientDetail.olaval5, new { value = "enter olaval5" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter olaval5" asp-for="@Model.clientDetail.olaval5" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Property Value?
+        @Html.TextBoxFor(Model => Model.clientDetail.propval, new { value = "enter property value" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter propval" asp-for="@Model.clientDetail.propval" /> *@
+    </label>
+
+    <label class="mt-4">
+        Vehicle Value
+        @Html.TextBoxFor(Model => Model.clientDetail.vehicval, new { value = "enter vehicle value" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter vehicval" asp-for="@Model.clientDetail.vehicval  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Plot Value
+        @Html.TextBoxFor(Model => Model.clientDetail.plotval, new { value = "enter plot value" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter plotval" asp-for="@Model.clientDetail.plotval" /> *@
+    </label>
+
+    <label class="mt-4">
+        Insurance Value
+        @Html.TextBoxFor(Model => Model.clientDetail.insval, new { value = "enter insurance value" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter insurance value" asp-for="@Model.clientDetail.insval " /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Total Assets
+        @Html.TextBoxFor(Model => Model.clientDetail.totalasset, new { value = "enter total assets" })
+        @* <input class="form-control" type="double" disabled="disabled" Placeholder="enter total assets" asp-for="@Model.clientDetail.totalasset" /> *@
+    </label>
+
+    <label class="mt-4">
+        Asset Month?
+        @Html.TextBoxFor(Model => Model.clientDetail.assetmon, new { value = "enter asset month" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter assetmon" asp-for="@Model.clientDetail.assetmon" /> *@
+    </label>
+
+    <label class="mt-4">
+        Asset Year?
+        @Html.TextBoxFor(Model => Model.clientDetail.assetyear, new { value = "enter asset year" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter assetyear" asp-for="@Model.clientDetail.assetyear" /> *@
+    </label>
+
+    <label class="mt-4">
+        Mental R
+        @Html.TextBoxFor(Model => Model.clientDetail.mr, new { value = "mr (true/false)" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter mr" asp-for="@Model.clientDetail.mr" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Developmently Disabled
+        @Html.TextBoxFor(Model => Model.clientDetail.dd, new { value = "developmental disability (true/false)" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter dd" asp-for="@Model.clientDetail.dd  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Physically Disabled
+        @Html.TextBoxFor(Model => Model.clientDetail.pd, new { value = "physical disability (true/false)" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter pd" asp-for="@Model.clientDetail.pd  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Needs 24 Hour Care
+        @Html.CheckBoxFor(Model => Model.clientDetail.care_24hr, new { value = "needs 24 hour care (true/false)" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter needs 24 hour care" asp-for="@Model.clientDetail.care_24hr " /> *@
+    </label>
+
+    <label class="mt-4">
+        DSM Diagnosis
+        @Html.TextBoxFor(Model => Model.clientDetail.dsmdiag, new { value = "enter dsm diagnosis" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter dsm diagnosis" asp-for="@Model.clientDetail.dsmdiag" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Medical Diagnosis
+        @Html.TextBoxFor(Model => Model.clientDetail.diag, new { value = "enter medical diagnosis" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter medical diagnosis" asp-for="@Model.clientDetail.diag" /> *@
+    </label>
+
+    <label class="mt-4">
+        Allergies
+        @Html.TextBoxFor(Model => Model.clientDetail.allergies, new { value = "enter any allergies" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter allergies" asp-for="@Model.clientDetail.allergies " /> *@
+    </label>
+
+    @{
+        var bloodTypeValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.BLOODTYPE")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                bloodTypeValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Blood Type
+        @Html.DropDownListFor(model => model.clientDetail.bloodtype, bloodTypeValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.bloodtype, new {  value = "enter blood type" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter blood Type" asp-for="@Model.clientDetail.bloodtype " /> *@
+    </label>
+
+    <label class="mt-4">
+        Height
+        @Html.TextBoxFor(Model => Model.clientDetail.height, new { value = "enter height" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.height " /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Weight
+        @Html.TextBoxFor(Model => Model.clientDetail.weight, new { value = "enter weight" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.weight " /> *@
+    </label>
+
+    <label class="mt-4">
+        Complexton
+        @Html.TextBoxFor(Model => Model.clientDetail.complexton, new { value = "enter complextion" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.complexton" /> *@
+    </label>
+
+    @{
+        var eyeColorValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.EYECOLOR")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                eyeColorValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Eye Color
+        @Html.DropDownListFor(model => model.clientDetail.eyecolor, eyeColorValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.eyecolor, new {  value = "enter eye color" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.eyecolor  " /> *@
+    </label>
+
+    @{
+        var hairColorValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.HAIRCOLOR")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                hairColorValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Hair Color
+        @Html.DropDownListFor(model => model.clientDetail.haircolor, hairColorValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.haircolor, new {  value = "enter hair color" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.haircolor " /> *@
+    </label>
+
+</p>
+<p>
+
+    @{
+        var visionValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.VISION")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                visionValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Vision Issues
+        @Html.DropDownListFor(model => model.clientDetail.vision, visionValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.vision, new {  value = "enter vision issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.vision " /> *@
+    </label>
+
+    @{
+        var hearingValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.HEARING")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                hearingValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Hearing Issues
+        @Html.DropDownListFor(model => model.clientDetail.hearing, hearingValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.hearing, new {  value = "enter hearing issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.hearing" /> *@
+    </label>
+
+    @{
+        var healthValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.HEALTH")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                healthValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Health Issues
+        @Html.DropDownListFor(model => model.clientDetail.health, healthValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.health, new {  value = "enter health issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.health " /> *@
+    </label>
+
+    @{
+        var seizureValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.SEIZURE")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                seizureValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Seizure Issues
+        @Html.DropDownListFor(model => model.clientDetail.seizure, seizureValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.seizure, new {  value = "enter seizure issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.seizure" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Primary Physican
+        @Html.TextBoxFor(Model => Model.clientDetail.physician, new { value = "enter primary physican" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.physician " /> *@
+    </label>
+
+    <label class="mt-4">
+        Med Alert
+        @Html.TextBoxFor(Model => Model.clientDetail.medalert, new { value = "enter medalert" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.medalert  " /> *@
+    </label>
+
+    <label class="mt-4">
+        medadapt
+        @Html.TextBoxFor(Model => Model.clientDetail.medadapt, new { value = "enter medadapt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.medadapt  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Diet
+        @Html.TextBoxFor(Model => Model.clientDetail.diet, new { value = "enter any diet restrictions" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.diet" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Identifying Marks
+        @Html.TextBoxFor(Model => Model.clientDetail.idmarks, new { value = "enter identifying marks" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.idmarks" /> *@
+    </label>
+
+    <label class="mt-4">
+        Assistive Devices
+        @Html.TextBoxFor(Model => Model.clientDetail.assisdev, new { value = "enter any assistive devices" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.assisdev  " /> *@
+    </label>
+
+    @{
+        var languageValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "LANGUAGE")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                languageValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Langues Understood
+        @Html.DropDownListFor(model => model.clientDetail.langus, languageValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.langus, new {  value = "enter langues understood" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.langus " /> *@
+    </label>
+
+    <label class="mt-4">
+        Languages Spoken
+        @Html.DropDownListFor(model => model.clientDetail.langspok, languageValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.langspok, new {  value = "enter lanaguages spoken" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.langspok  " /> *@
+    </label>
+
+</p>
+<p>
+    @{
+        var communicationValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.COMMLVLE")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                communicationValues.Add(pkItem);
+            }
+        }
+    }
+
+    <label class="mt-4">
+        Communication Level
+        @Html.DropDownListFor(model => model.clientDetail.commlvle, communicationValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.commlvle, new { value = "enter communication level" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.commlvle  " /> *@
+    </label>
+
+    @{
+        var communicationModeValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.COMMMODE")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                communicationModeValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Communication Mode
+        @Html.DropDownListFor(model => model.clientDetail.commmode, communicationModeValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.commmode, new {  value = "enter communication mode" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.commmode  " /> *@
+    </label>
+
+    @{
+        var communicationLevelValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.COMMLVLR")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                communicationLevelValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        commlvlr
+        @Html.DropDownListFor(model => model.clientDetail.commlvlr, communicationLevelValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.commlvlr, new {  value = "enter commlvlr" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.commlvlr  " /> *@
+    </label>
+
+    @{
+        var communicationModRValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.COMMMODR")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                communicationModRValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Communication Mode (Rec)
+        @Html.DropDownListFor(model => model.clientDetail.commmodr, communicationModRValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.commmodr, new { value = "enter commmodr" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.commmodr  " /> *@
+    </label>
+
+</p>
+<p>
+
+    @{
+        var mentalFunctValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.MENTFUNC")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                mentalFunctValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Mental Functioning
+        @Html.DropDownListFor(model => model.clientDetail.mentfunc, mentalFunctValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.mentfunc, new {  value = "enter mental functioning" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.mentfunc  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Adaptive Functioning
+        @Html.DropDownListFor(model => model.clientDetail.adapfunc, mentalFunctValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.adapfunc, new { value = "enter adaptive functioning" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.adapfunc  " /> *@
+    </label>
+
+    @{
+        var mobilityIssueValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.MOBILITY")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                mobilityIssueValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Mobility Issues
+        @Html.DropDownListFor(model => model.clientDetail.mobility, mobilityIssueValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.mobility, new {  value = "enter mobility issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.mobility  " /> *@
+    </label>
+
+    @{
+        var mobilityAssistanceValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.MOBASSIST")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                mobilityAssistanceValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Mobility Assistance
+        @Html.DropDownListFor(model => model.clientDetail.mobassist, mobilityAssistanceValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.mobassist, new {  value = "enter mobility asistance" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.mobassist " /> *@
+    </label>
+
+</p>
+<p>
+
+    @{
+        var armHandValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.ARMHAND")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                armHandValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Arm/Hand Limitations
+        @Html.DropDownListFor(model => model.clientDetail.armhand, armHandValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.armhand, new {  value = "enter armhand" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.armhand" /> *@
+    </label>
+
+    @{
+        var vocationalSkillValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.VOCASKILLS")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                vocationalSkillValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Vocational Skills
+        @Html.DropDownListFor(model => model.clientDetail.vocaskills, vocationalSkillValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.vocaskills, new {  value = "enter vocational skills" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.vocaskills" /> *@
+    </label>
+
+    <label class="mt-4">
+        Adaptive Devices
+        @Html.TextBoxFor(Model => Model.clientDetail.adaptdev, new { value = "enter adaptive devices" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.adaptdev  " /> *@
+    </label>
+
+    @{
+        var educationLevelValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.EDUCALVL")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                educationLevelValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Education Level
+        @Html.DropDownListFor(model => model.clientDetail.educalvl, educationLevelValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.educalvl, new {  value = "enter education level" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.educalvl  " /> *@
+    </label>
+
+</p>
+<p>
+
+    @{
+        var socialSkillValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.SOCIAL")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                socialSkillValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Social Interaction
+        @Html.DropDownListFor(model => model.clientDetail.social, socialSkillValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.social, new { value = "enter social skills" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.social " /> *@
+    </label>
+
+    @{
+        var transferringValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.TRANSFER")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                transferringValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Transferring
+        @Html.DropDownListFor(model => model.clientDetail.transfer, transferringValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.transfer, new {  value = "enter transfer" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.transfer  " /> *@
+    </label>
+
+    @{
+        var toiletingValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.TOILET")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                toiletingValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Toileting
+        @Html.DropDownListFor(model => model.clientDetail.toilet, toiletingValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.toilet, new {  value = "enter toilet issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.toilet " /> *@
+    </label>
+
+    @{
+        var eatingValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.EATING")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                eatingValues.Add(pkItem);
+            }
+        }
+    }
+    <label class="mt-4">
+        Eating
+        @Html.DropDownListFor(model => model.clientDetail.eating, eatingValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.eating, new {  value = "enter eating issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.eating " /> *@
+    </label>
+
+</p>
+<p>
+
+    @{
+        var mealValues = new List<SelectListItem>();
+        var title = "";
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.MEAL")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                mealValues.Add(pkItem);
+                title = p.longtitle;
+            }
+        }
+    }
+    <label class="mt-4">
+        @title
+        @Html.DropDownListFor(model => model.clientDetail.meal, mealValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.meal, new { value = "enter meal issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.meal" /> *@
+    </label>
+
+    @{
+        var bathingValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.BATHING")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                bathingValues.Add(pkItem);
+                title = p.longtitle;
+            }
+        }
+    }
+    @* Bathing *@
+    @* ------- *@
+    <label class="mt-4">
+        @title
+        @Html.DropDownListFor(model => model.clientDetail.bathing, bathingValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.bathing, new {  value = "enter bathing issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.bathing" /> *@
+    </label>
+
+    @{
+        var dressingValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.DRESSING")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                dressingValues.Add(pkItem);
+                title = p.longtitle;
+            }
+        }
+    }
+    @* Dressing *@
+    @* -------- *@
+    <label class="mt-4">
+        @title
+        @Html.DropDownListFor(model => model.clientDetail.dressing, dressingValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.dressing, new {  value = "enter dressing issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dressing  " /> *@
+    </label>
+
+    @{
+        var groomingValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.GROOMING")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                groomingValues.Add(pkItem);
+                title = p.longtitle;
+            }
+        }
+    }
+    @* Grooming *@
+    @* -------- *@
+    <label class="mt-4">
+        @title
+        @Html.DropDownListFor(model => model.clientDetail.grooming, groomingValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.grooming, new {  value = "enter grooming issues" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.grooming  " /> *@
+    </label>
+
+</p>
+<p>
+
+    @{
+        var frequencyValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.GROOMING")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                frequencyValues.Add(pkItem);
+                title = p.longtitle;
+            }
+        }
+    }
+    <label class="mt-4">
+        Hurts Self Frequency
+        @Html.DropDownListFor(model => model.clientDetail.selffreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.selffreq, new { value = "enter selffreq" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.selffreq  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Hurts Others Frequency
+        @Html.DropDownListFor(model => model.clientDetail.othrfreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.othrfreq, new {  value = "enter othrfreq" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.othrfreq  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Destructive Frequency
+        @Html.DropDownListFor(model => model.clientDetail.destrfreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.destrfreq, new {  value = "enter destrfreq" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.destrfreq " /> *@
+    </label>
+
+    <label class="mt-4">
+        Disruptive Frequency
+        @Html.DropDownListFor(model => model.clientDetail.disrfreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.disrfreq, new {  value = "enter disrfreq" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.disrfreq  " /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        reptfreq
+        @Html.DropDownListFor(model => model.clientDetail.reptfreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.reptfreq, new {  value = "enter reptfreq" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.reptfreq  " /> *@
+    </label>
+
+    <label class="mt-4">
+        offfreq
+        @Html.DropDownListFor(model => model.clientDetail.offfreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.offfreq, new {  value = "enter offfreq" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.offfreq" /> *@
+    </label>
+
+    <label class="mt-4">
+        wibfreq
+        @Html.DropDownListFor(model => model.clientDetail.wibfreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.wibfreq, new {  value = "enter wibfreq" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.wibfreq" /> *@
+    </label>
+
+    <label class="mt-4">
+        Uncoopertive Frequency
+        @Html.DropDownListFor(model => model.clientDetail.uncoopfreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.uncoopfreq, new {  value = "enter uncoopertive frequency" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.uncoopfreq" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Wandering Frequency
+        @Html.DropDownListFor(model => model.clientDetail.wanderfreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.wanderfreq, new {  value = "enter wandering frequency" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.wanderfreq" /> *@
+    </label>
+
+    <label class="mt-4">
+        Pica Frequency
+        @Html.DropDownListFor(model => model.clientDetail.picafreq, frequencyValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.picafreq, new {  value = "enter pica frequency" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.picafreq  " /> *@
+    </label>
+
+    @{
+        var SeverityValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "BSEVERITY")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                SeverityValues.Add(pkItem);
+                title = p.longtitle;
+            }
+        }
+    }
+    <label class="mt-4">
+        Hurts Self Severity
+        @Html.DropDownListFor(model => model.clientDetail.selfsev, SeverityValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.selfsev, new {  value = "enter selfsev" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.selfsev" /> *@
+    </label>
+
+    <label class="mt-4">
+        Hurts Others Severity
+        @Html.DropDownListFor(model => model.clientDetail.othrsev, SeverityValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.othrsev, new {  value = "enter othrsev" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.othrsev" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Destructive Severity
+        @Html.DropDownListFor(model => model.clientDetail.destrsev, SeverityValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.destrsev, new {  value = "enter destrsev" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.destrsev  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Disrutpive Severity
+        @Html.DropDownListFor(model => model.clientDetail.disrsev, SeverityValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.disrsev, new {  value = "enter disrsev" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.disrsev" /> *@
+    </label>
+
+    <label class="mt-4">
+        Repition Severity
+        @Html.DropDownListFor(model => model.clientDetail.reptsev, SeverityValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.reptsev, new {  value = "enter reptsev" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.reptsev" /> *@
+    </label>
+
+    <label class="mt-4">
+        offsev
+        @Html.DropDownListFor(model => model.clientDetail.offsev, SeverityValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.offsev, new {  value = "enter offsev" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.offsev " /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Uncooraptive Severity
+        @Html.DropDownListFor(model => model.clientDetail.uncoopsev, SeverityValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.uncoopsev, new {  value = "enter uncooraptive severity" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.uncoopsev " /> *@
+    </label>
+
+    <label class="mt-4">
+        Wandering Severity
+        @Html.DropDownListFor(model => model.clientDetail.wandersev, SeverityValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.wandersev, new {  value = "enter wandering severity" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.wandersev " /> *@
+    </label>
+
+    <label class="mt-4">
+        Pica Severity
+        @Html.DropDownListFor(model => model.clientDetail.picasev, SeverityValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.picasev, new {  value = "enter pica severity" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.picasev" /> *@
+    </label>
+</p>
+<p>
+    <label class="mt-4">
+        Behavior Adapt
+        @Html.TextBoxFor(Model => Model.clientDetail.behavadapt, new { value = "enter behavior adapt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.behavadapt" /> *@
+    </label>
+
+    @{
+        var intakeStatusValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "BSEVERITY")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                intakeStatusValues.Add(pkItem);
+                title = p.longtitle;
+            }
+        }
+    }
+    @* Intake Status *@
+    @* ------------- *@
+    <label class="mt-4">
+        @title
+        @Html.DropDownListFor(model => model.clientDetail.intakestat, intakeStatusValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.intakestat, new { value = "enter intake status" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.intakestat" /> *@
+    </label>
+
+    <label class="mt-4">
+        detdate
+        @Html.EditorFor(Model => Model.clientDetail.detdate, new { value = "enter det date" })
+        @Html.ValidationMessageFor(model => model.clientDetail.detdate)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.detdate, new { value = "enter detdate" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.detdate" /> *@
+    </label>
+
+    <label class="mt-4">
+        detcode
+        @Html.TextBoxFor(Model => Model.clientDetail.detcode, new { value = "enter detcode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.detcode" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        svcdate
+        @Html.EditorFor(Model => Model.clientDetail.svcdate, new { value = "enter svc date" })
+        @Html.ValidationMessageFor(model => model.clientDetail.detdate)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.svcdate, new { value = "enter svcdate" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.svcdate" /> *@
+    </label>
+
+    <label class="mt-4">
+        appdate
+        @Html.EditorFor(Model => Model.clientDetail.appdate, new { value = "enter app date" })
+        @Html.ValidationMessageFor(model => model.clientDetail.detdate)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.appdate, new {  value = "enter appdate" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.appdate" /> *@
+    </label>
+
+    @{
+        var provisionValues = new List<SelectListItem>();
+        foreach (var p in Model.pickListValues)
+        {
+            if (p.fieldd.Trim() == "CLIENTS.PROVISION")
+            {
+                var pkItem = new SelectListItem() { Value = p.item, Text = p.item };
+                provisionValues.Add(pkItem);
+                title = p.longtitle;
+            }
+        }
+    }
+    @* Provision *@
+    @* --------- *@
+    <label class="mt-4">
+        @title
+        @Html.DropDownListFor(model => model.clientDetail.provision, provisionValues)
+        @* @Html.TextBoxFor(Model => Model.clientDetail.provision, new { value = "enter provision" }) *@
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.provision " /> *@
+    </label>
+
+    <label class="mt-4">
+        classasuit
+        @Html.TextBoxFor(Model => Model.clientDetail.classasuit, new { value = "enter classasuit" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.classasuit" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        lastplace
+        @Html.TextBoxFor(Model => Model.clientDetail.lastplace, new { value = "enter lastplace" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.lastplace " /> *@
+    </label>
+
+    <label class="mt-4">
+        volunteer
+        @Html.TextBoxFor(Model => Model.clientDetail.volunteer, new { value = "enter volunteer" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.volunteer " /> *@
+    </label>
+
+    <label class="mt-4">
+        Visitor Restrictions
+        @Html.TextBoxFor(Model => Model.clientDetail.visitor_rs, new { value = "enter visitor restrictions" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.visitor_rs" /> *@
+    </label>
+
+    <label class="mt-4">
+        Religion
+        @Html.TextBoxFor(Model => Model.clientDetail.religion, new { value = "enter religion" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.religion  " /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Religion Note
+        @Html.TextBoxFor(Model => Model.clientDetail.relig_note, new { value = "enter religion note" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.relig_note" /> *@
+    </label>
+
+    <label class="mt-4">
+        Day Place
+        @Html.TextBoxFor(Model => Model.clientDetail.dayplace, new { value = "enter day place" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dayplace  " /> *@
+    </label>
+
+    <label class="mt-4">
+        resprior
+        @Html.TextBoxFor(Model => Model.clientDetail.resprior, new { value = "enter resprior" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.resplace  " /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        namerele
+        @Html.TextBoxFor(Model => Model.clientDetail.namerele, new { value = "enter namerele" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.namerele  " /> *@
+    </label>
+
+    <label class="mt-4">
+        photoclr
+        @Html.TextBoxFor(Model => Model.clientDetail.photoclr, new { value = "enter photoclr" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.photoclr  " /> *@
+    </label>
+
+    <label class="mt-4">
+        Legal Compantence
+        @Html.TextBoxFor(Model => Model.clientDetail.legalcomp, new { value = "enter legan compatence" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.legalcomp " /> *@
+    </label>
+
+    <label class="mt-4">
+        Date of Adjudication
+        @Html.TextBoxFor(Model => Model.clientDetail.dol_adjuca, new { value = "enter date of adjudication" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dol_adjuca" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        treason
+        @Html.TextBoxFor(Model => Model.clientDetail.treason, new { value = "enter treason" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.treason" /> *@
+    </label>
+
+    <label class="mt-4">
+        termdate
+        @Html.TextBoxFor(Model => Model.clientDetail.termdate, new { value = "enter termdate" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.termdate  " /> *@
+    </label>
+
+    <label class="mt-4">
+        discsum
+        @Html.TextBoxFor(Model => Model.clientDetail.discsum, new { value = "enter discsum" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.discsum" /> *@
+    </label>
+
+    <label class="mt-4">
+        Picture Extension
+        @Html.TextBoxFor(Model => Model.clientDetail.pictureext, new { value = "enter picture extension" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.pictureext" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Picture File Name
+        @Html.TextBoxFor(Model => Model.clientDetail.picfilename, new { value = "enter picture filename" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.picfilename  " /> *@
+    </label>
+    <label class="mt-4">
+        US Citizenship
+        @Html.TextBoxFor(Model => Model.clientDetail.is_uscitz, new { value = "enter us citizenship" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.is_uscitz " /> *@
+    </label>
+
+    <label class="mt-4">
+        a_num
+        @Html.TextBoxFor(Model => Model.clientDetail.a_num, new { value = "enter a_num" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.a_num  " /> *@
+    </label>
+
+    <label class="mt-4">
+        a_num Expiration Date
+        @Html.TextBoxFor(Model => Model.clientDetail.a_numexpdt, new { value = "enter a_num expiration date" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.a_numexpdt" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        agept
+        @Html.TextBoxFor(Model => Model.clientDetail.agept, new { value = "enter agept" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.agept" /> *@
+    </label>
+
+    <label class="mt-4">
+        Billing ID
+        @Html.TextBoxFor(Model => Model.clientDetail.a_numexpdt, new { value = "enter a_num expiration date" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.behavexist" /> *@
+    </label>
+
+    <label class="mt-4">
+        behavexist
+        @Html.TextBoxFor(Model => Model.clientDetail.behavexist, new { value = "enter behavexist" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.behavobjno" /> *@
+    </label>
+
+    <label class="mt-4">
+        Behavior Title
+        @Html.TextBoxFor(Model => Model.clientDetail.behavtitle, new { value = "enter behavior title" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.behavtitle" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        bfreefactr
+        @Html.TextBoxFor(Model => Model.clientDetail.bfreefactr, new { value = "enter bfreefactr" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.bfreefactr" /> *@
+    </label>
+
+    <label class="mt-4">
+        bgenhypoth
+        @Html.TextBoxFor(Model => Model.clientDetail.bgenhypoth, new { value = "enter bgenhypoth" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.bgenhypoth" /> *@
+    </label>
+
+    <label class="mt-4">
+        bhvintrval
+        @Html.TextBoxFor(Model => Model.clientDetail.bhvintrval, new { value = "enter bhvintrval" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.bhvintrval" /> *@
+    </label>
+
+    <label class="mt-4">
+        bhvrsp_key
+        @Html.TextBoxFor(Model => Model.clientDetail.behavtitle, new { value = "enter bhvrsp_key" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.bhvrsp_key" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Place of Birth
+        @Html.TextBoxFor(Model => Model.clientDetail.birthplace, new { value = "enter place of birth" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.birthplace" /> *@
+    </label>
+
+    <label class="mt-4">
+        Behavior Precursor
+        @Html.TextBoxFor(Model => Model.clientDetail.bprecursor, new { value = "enter behavior precursor" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.bprecursor" /> *@
+    </label>
+
+    <label class="mt-4">
+        Case ManagerD
+        @Html.TextBoxFor(Model => Model.clientDetail.caseman, new { value = "enter case manager" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.caseman" /> *@
+    </label>
+
+    <label class="mt-4">
+        Citizenship Code
+        @Html.TextBoxFor(Model => Model.clientDetail.citizenshipcode, new { value = "enter citizenship code" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.citizenshipcode" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        claid
+        @Html.TextBoxFor(Model => Model.clientDetail.claid, new { value = "enter claid" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.claid" /> *@
+    </label>
+
+    <label class="mt-4">
+        closcount
+        @Html.TextBoxFor(Model => Model.clientDetail.closcount, new { value = "enter closcount" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.closcount" /> *@
+    </label>
+
+    <label class="mt-4">
+        closdate
+        @Html.TextBoxFor(Model => Model.clientDetail.closdate, new { value = "enter closdate" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.closdate" /> *@
+    </label>
+
+    <label class="mt-4">
+        closdispcode
+        @Html.TextBoxFor(Model => Model.clientDetail.closdispcode, new { value = "enter closdispcode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.closdispcode" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        closrescode
+        @Html.TextBoxFor(Model => Model.clientDetail.closrescode, new { value = "enter closrescode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.closrescode" /> *@
+    </label>
+
+    <label class="mt-4">
+        cntyorigincode
+        @Html.TextBoxFor(Model => Model.clientDetail.cntyorigincode, new { value = "enter cntyorigincode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.cntyorigincode" /> *@
+    </label>
+
+    <label class="mt-4">
+        courttreatmentcode
+        @Html.TextBoxFor(Model => Model.clientDetail.courttreatmentcode, new { value = "enter courttreatmentcode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.courttreatmentcode" /> *@
+    </label>
+
+    <label class="mt-4">
+        deldate
+        @Html.TextBoxFor(Model => Model.clientDetail.deldate, new { value = "enter deldate" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.deldate" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        dfi_cfi_enroll
+        @Html.TextBoxFor(Model => Model.clientDetail.dfi_cfi_enroll, new { value = "enter dfi_cfi_enroll" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dfi_cfi_enroll" /> *@
+    </label>
+
+    <label class="mt-4">
+        dfscaseid
+        @Html.TextBoxFor(Model => Model.clientDetail.dfscaseid, new { value = "enter dfscaseid" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dfscaseid" /> *@
+    </label>
+
+    <label class="mt-4">
+        Discharge Date
+        @Html.TextBoxFor(Model => Model.clientDetail.disch_date, new { value = "enter discharge date" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.disch_date" /> *@
+    </label>
+
+    <label class="mt-4">
+        Discharge Reason
+        @Html.TextBoxFor(Model => Model.clientDetail.disch_reason, new { value = "enter discharge reason" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.disch_reason" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Discharge Time
+        @Html.TextBoxFor(Model => Model.clientDetail.disch_time, new { value = "enter discharge time" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.disch_time" /> *@
+    </label>
+
+    <label class="mt-4">
+        DSM4 Axis 1
+        @Html.TextBoxFor(Model => Model.clientDetail.dsm4axis1, new { value = "enter dsm4 axis 1" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dsm4axis1" /> *@
+    </label>
+
+    <label class="mt-4">
+        DSM4 Axis 2
+        @Html.TextBoxFor(Model => Model.clientDetail.dsm4axis2, new { value = "enter dsm4 axis 2" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dsm4axis2" /> *@
+    </label>
+
+    <label class="mt-4">
+        DSM4 Axis 3
+        @Html.TextBoxFor(Model => Model.clientDetail.dsm4axis3, new { value = "enter dsm4 axis 3" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dsm4axis3" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        DSM4 Axis 4
+        @Html.TextBoxFor(Model => Model.clientDetail.dsm4axis4, new { value = "enter dsm4 axis 4" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dsm4axis4" /> *@
+    </label>
+
+    <label class="mt-4">
+        DSM4 SOFA
+        @Html.TextBoxFor(Model => Model.clientDetail.dsm4sofa, new { value = "enter dsm4 sofa" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.dsm4sofa" /> *@
+    </label>
+
+    <label class="mt-4">
+        funpresnt
+        @Html.TextBoxFor(Model => Model.clientDetail.funpresnt, new { value = "enter funpresnt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.funpresnt" /> *@
+    </label>
+
+    <label class="mt-4">
+        funvision
+        @Html.TextBoxFor(Model => Model.clientDetail.funvision, new { value = "enter funvision" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.funvision" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        gdnstat
+        @Html.TextBoxFor(Model => Model.clientDetail.gdnstat, new { value = "enter gdnstat" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.gdnstat" /> *@
+    </label>
+
+    <label class="mt-4">
+        hispanicorigincode
+        @Html.TextBoxFor(Model => Model.clientDetail.hispanicorigincode, new { value = "enter hispanicorigincode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.hispanicorigincode" /> *@
+    </label>
+
+    <label class="mt-4">
+        homepresnt
+        @Html.TextBoxFor(Model => Model.clientDetail.homepresnt, new { value = "enter homepresnt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.homepresnt" /> *@
+    </label>
+
+    <label class="mt-4">
+        homevision
+        @Html.TextBoxFor(Model => Model.clientDetail.homevision, new { value = "enter homevision" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.homevision" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        Hospital Prefrence
+        @Html.TextBoxFor(Model => Model.clientDetail.hospitalpref, new { value = "enter hospital prefrence" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.hospitalpref" /> *@
+    </label>
+
+    <label class="mt-4">
+        interpsvccode
+        @Html.TextBoxFor(Model => Model.clientDetail.interpsvccode, new { value = "enter interpsvccode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.interpsvccode" /> *@
+    </label>
+
+    <label class="mt-4">
+        ippdate
+        @Html.TextBoxFor(Model => Model.clientDetail.ippdate, new { value = "enter ippdate" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.ippdate" /> *@
+    </label>
+
+    <label class="mt-4">
+        Current
+        @Html.TextBoxFor(Model => Model.clientDetail.homevision, new { value = "enter is current" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.is_current" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        lastpdp
+        @Html.TextBoxFor(Model => Model.clientDetail.lastpdp, new { value = "enter lastpdp" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.lastpdp" /> *@
+    </label>
+
+    <label class="mt-4">
+        lernpresnt
+        @Html.TextBoxFor(Model => Model.clientDetail.lernpresnt, new { value = "enter lernpresnt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.lernpresnt" /> *@
+    </label>
+
+    <label class="mt-4">
+        lernvision
+        @Html.TextBoxFor(Model => Model.clientDetail.lernvision, new { value = "enter lernvision" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.lernvision" /> *@
+    </label>
+
+    <label class="mt-4">
+        Living Unit
+        @Html.TextBoxFor(Model => Model.clientDetail.livunit_key, new { value = "enter living unit" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.livunit_key" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        milstatcode
+        @Html.TextBoxFor(Model => Model.clientDetail.milstatcode, new { value = "enter milstatcode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.milstatcode" /> *@
+    </label>
+
+    <label class="mt-4">
+        Billing ID
+        @Html.TextBoxFor(Model => Model.clientDetail.livunit_key, new { value = "enter living unit" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.nextpdp" /> *@
+    </label>
+
+    <label class="mt-4">
+        Billing ID
+        @Html.TextBoxFor(Model => Model.clientDetail.livunit_key, new { value = "enter living unit" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.notepad" /> *@
+    </label>
+
+    <label class="mt-4">
+        Objective Met
+        @Html.TextBoxFor(Model => Model.clientDetail.obj_met, new { value = "enter objective met" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.obj_met" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        oth2presnt
+        @Html.TextBoxFor(Model => Model.clientDetail.oth2presnt, new { value = "enter oth2presnt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.oth2presnt" /> *@
+    </label>
+
+    <label class="mt-4">
+        oth2vision
+        @Html.TextBoxFor(Model => Model.clientDetail.oth2vision, new { value = "enter oth2vision" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.oth2vision" /> *@
+    </label>
+
+    <label class="mt-4">
+        oth3presnt
+        @Html.TextBoxFor(Model => Model.clientDetail.oth3presnt, new { value = "enter oth3presnt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.oth3presnt" /> *@
+    </label>
+
+    <label class="mt-4">
+        oth3vision
+        @Html.TextBoxFor(Model => Model.clientDetail.oth3vision, new { value = "enter oth3vision" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.oth3vision" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        othrace
+        @Html.TextBoxFor(Model => Model.clientDetail.othrace, new { value = "enter othrace" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.othrace" /> *@
+    </label>
+
+    <label class="mt-4">
+        othragencies
+        @Html.TextBoxFor(Model => Model.clientDetail.othragencies, new { value = "enter othragencies" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.othragencies" /> *@
+    </label>
+
+    <label class="mt-4">
+        othrpresnt
+        @Html.TextBoxFor(Model => Model.clientDetail.othrpresnt, new { value = "enter othrpresnt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.othrpresnt" /> *@
+    </label>
+
+    <label class="mt-4">
+        othrvision
+        @Html.TextBoxFor(Model => Model.clientDetail.othrvision, new { value = "enter othrvision" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.othrvision" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        palspresnt
+        @Html.TextBoxFor(Model => Model.clientDetail.palspresnt, new { value = "enter palspresnt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.palspresnt" /> *@
+    </label>
+
+    <label class="mt-4">
+        palsvision
+        @Html.TextBoxFor(Model => Model.clientDetail.palsvision, new { value = "enter palsvision" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.palsvision" /> *@
+    </label>
+
+    <label class="mt-4">
+        picture
+        @Html.TextBoxFor(Model => Model.clientDetail.picture, new { value = "enter picture" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.picture" /> *@
+    </label>
+
+    <label class="mt-4">
+        publicaidid
+        @Html.TextBoxFor(Model => Model.clientDetail.publicaidid, new { value = "enter publicaidid" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.publicaidid" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        regcount
+        @Html.TextBoxFor(Model => Model.clientDetail.regcount, new { value = "enter regcount" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.regcount" /> *@
+    </label>
+
+    <label class="mt-4">
+        regdate
+        @Html.TextBoxFor(Model => Model.clientDetail.regdate, new { value = "enter regdate" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.regdate" /> *@
+    </label>
+
+    <label class="mt-4">
+        regrescode
+        @Html.TextBoxFor(Model => Model.clientDetail.regrescode, new { value = "enter regrescode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.regrescode" /> *@
+    </label>
+
+    <label class="mt-4">
+        rep_payee
+        @Html.TextBoxFor(Model => Model.clientDetail.rep_payee, new { value = "enter rep_payee" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.rep_payee" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        revduedate
+        @Html.TextBoxFor(Model => Model.clientDetail.revduedate, new { value = "enter revduedate" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.revduedate" /> *@
+    </label>
+
+    <label class="mt-4">
+        revfirst
+        @Html.TextBoxFor(Model => Model.clientDetail.revfirst, new { value = "enter revfirst" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.revfirst" /> *@
+    </label>
+
+    <label class="mt-4">
+        revlast
+        @Html.TextBoxFor(Model => Model.clientDetail.revlast, new { value = "enter revlast" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.revlast" /> *@
+    </label>
+
+    <label class="mt-4">
+        ROCSDD_DnLoad
+        @Html.TextBoxFor(Model => Model.clientDetail.ROCSDD_DnLoad, new { value = "enter ROCSDD_DnLoad" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.ROCSDD_DnLoad" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        ROCS_DnLoad
+        @Html.TextBoxFor(Model => Model.clientDetail.ROCS_DnLoad, new { value = "enter ROCS_DnLoad" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.ROCS_DnLoad" /> *@
+    </label>
+
+    <label class="mt-4">
+        ROCS_UpLoad
+        @Html.TextBoxFor(Model => Model.clientDetail.ROCS_UpLoad, new { value = "enter ROCS_UpLoad" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.ROCS_UpLoad" /> *@
+    </label>
+
+    <label class="mt-4">
+        site
+        @Html.TextBoxFor(Model => Model.clientDetail.site, new { value = "enter site" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.site" /> *@
+    </label>
+
+    <label class="mt-4">
+        sname
+        @Html.TextBoxFor(Model => Model.clientDetail.sname, new { value = "enter sname" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.sname" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        srcsuppins
+        @Html.TextBoxFor(Model => Model.clientDetail.srcsuppins, new { value = "enter srcsuppins" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.srcsuppins" /> *@
+    </label>
+
+    <label class="mt-4">
+        ssi_ssdi_eligcode
+        @Html.TextBoxFor(Model => Model.clientDetail.ssi_ssdi_eligcode, new { value = "enter ssi_ssdi_eligcode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.ssi_ssdi_eligcode" /> *@
+    </label>
+
+    <label class="mt-4">
+        statefacid
+        @Html.TextBoxFor(Model => Model.clientDetail.statefacid, new { value = "enter statefacid" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.statefacid" /> *@
+    </label>
+
+    <label class="mt-4">
+        tca_code
+        @Html.TextBoxFor(Model => Model.clientDetail.tca_code, new { value = "enter tca_code" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.tca_code" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        tca_origincode
+        @Html.TextBoxFor(Model => Model.clientDetail.tca_origincode, new { value = "enter tca_origincode" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.tca_origincode" /> *@
+    </label>
+
+    <label class="mt-4">
+        timestamp_column
+        @Html.TextBoxFor(Model => Model.clientDetail.timestamp_column, new { value = "enter timestamp_column" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.timestamp_column" /> *@
+    </label>
+
+    <label class="mt-4">
+        triggrdate
+        @Html.TextBoxFor(Model => Model.clientDetail.triggrdate, new { value = "enter triggrdate" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.triggrdate" /> *@
+    </label>
+
+    <label class="mt-4">
+        workpresnt
+        @Html.TextBoxFor(Model => Model.clientDetail.workpresnt, new { value = "enter workpresnt" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.workpresnt" /> *@
+    </label>
+
+</p>
+<p>
+
+    <label class="mt-4">
+        workvision
+        @Html.TextBoxFor(Model => Model.clientDetail.workvision, new { value = "enter workvision" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.workvision" /> *@
+    </label>
+
+    <label class="mt-4">
+        ytdleave
+        @Html.TextBoxFor(Model => Model.clientDetail.ytdleave, new { value = "enter ytdleave" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.ytdleave" /> *@
+    </label>
+
+    <label class="mt-4">
+        zipcode_origin
+        @Html.TextBoxFor(Model => Model.clientDetail.zipcode_origin, new { value = "enter zipcode_origin" })
+        @* <input class="form-control" type="text" disabled="disabled" Placeholder="enter billing id" asp-for="@Model.clientDetail.zipcode_origin" /> *@
+    </label>
+
+</p>
+
+

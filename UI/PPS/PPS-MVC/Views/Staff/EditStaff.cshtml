@@ -1,0 +1,394 @@
+﻿@using DataModels.Models.PickList
+@using DataModels.Models.Entities
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using Microsoft.AspNetCore.Html
+@using PPS_MVC.Helpers
+
+@{
+    ViewData["Title"] = "Personal Planning - Staff Details";
+}
+
+@model Staff
+
+
+@* <div class="content"> *@
+<div >
+    @{
+        var ppsFunc = new PPSFunctions();
+        string pluralName = ppsFunc.MkPlural(Model.ffirst);
+    }
+    <h1 class="display-4">@pluralName Details</h1>
+    @* <a asp-controller="Staff" asp-action="SaveStaffDetails" asp-route-id="staff_key" class="btn btn-primary">Save @pluralName Details</a> *@
+    @* <button class="btn btn-primary mt-4" asp-controller="Staff" asp-action="SaveStaffDetails" asp-route-id="Staff_key">Save @pluralName Details</button> *@
+</div>
+<form asp-action="CreateEditStaffForm" asp-controller="Home">
+
+    @* <div class="body"> *@
+    <button class="btn btn-primary mt-4" asp-controller="Staff" asp-action="SaveStaffDetails" asp-route-id="Staff_key">Save @pluralName Details</button>
+
+    <br />
+
+    <label class="visually-hidden">client detail key</label>
+    <input class="visually-hidden" type="text" placeholder="" asp-for="@Model.staff_key" />
+    <p>
+        <label class="mt-4">
+            First Name
+            @Html.TextBoxFor(Model => Model.ffirst, new { value = "enter first name" })
+        </label>
+
+        <label class="mt-4">
+            Middle Name
+            @Html.TextBoxFor(Model => Model.middle, new { })
+        </label>
+
+        <label class="mt-4">
+            Last Name
+            @Html.TextBoxFor(Model => Model.llast, new { })
+        </label>
+
+        <label class="mt-4">
+            username
+            @Html.TextBoxFor(Model => Model.username, new { })
+        </label>
+
+        <label class="mt-4">
+            ssn
+            @Html.TextBoxFor(Model => Model.ssn, new { })
+        </label>
+
+        <label class="mt-4">
+            address
+            @Html.TextBoxFor(Model => Model.address, new { })
+        </label>
+
+        <label class="mt-4">
+            address2
+            @Html.TextBoxFor(Model => Model.address2, new { })
+        </label>
+
+        <label class="mt-4">
+            city
+            @Html.TextBoxFor(Model => Model.city, new { })
+        </label>
+
+        <label class="mt-4">
+            state
+            @Html.TextBoxFor(Model => Model.state, new { })
+        </label>
+
+        <label class="mt-4">
+            zip
+            @Html.TextBoxFor(Model => Model.zip, new { })
+        </label>
+
+        <label class="mt-4">
+            allrights
+            @Html.CheckBoxFor(Model => Model.allrights, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            asignbynam
+            @Html.CheckBoxFor(Model => Model.asignbynam, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            is_current
+            @Html.CheckBoxFor(Model => Model.is_current, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            is_sysadmin
+            @Html.CheckBoxFor(Model => Model.is_sysadmin, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            belong2_1
+            @Html.TextBoxFor(Model => Model.belong2_1, new { })
+        </label>
+
+        <label class="mt-4">
+            belong2_2
+            @Html.TextBoxFor(Model => Model.belong2_2, new { })
+        </label>
+
+        <label class="mt-4">
+            birthday
+            @Html.TextBoxFor(Model => Model.birthday, new { })
+        </label>
+
+        <label class="mt-4">
+            contac_key
+            @Html.TextBoxFor(Model => Model.contac_key, new { })
+        </label>
+
+        <label class="mt-4">
+            group1perm
+            @Html.TextBoxFor(Model => Model.group1perm, new { })
+        </label>
+
+        <label class="mt-4">
+            group2perm
+            @Html.TextBoxFor(Model => Model.group2perm, new { })
+        </label>
+
+        <label class="mt-4">
+            lastcli
+            @Html.TextBoxFor(Model => Model.lastcli, new { })
+        </label>
+
+        <label class="mt-4">
+            location
+            @Html.TextBoxFor(Model => Model.location, new { })
+        </label>
+
+        <label class="mt-4">
+            moneyhr
+            @Html.TextBoxFor(Model => Model.moneyhr, new { })
+        </label>
+
+        <label class="mt-4">
+            my_actions
+            @Html.TextBoxFor(Model => Model.my_actions, new { })
+        </label>
+
+        <label class="mt-4">
+            mygroup
+            @Html.TextBoxFor(Model => Model.mygroup, new { })
+        </label>
+
+        <label class="mt-4">
+            phone
+            @Html.TextBoxFor(Model => Model.phone, new { })
+        </label>
+
+        <label class="mt-4">
+            Position
+            @Html.TextBoxFor(Model => Model.positionn, new { })
+        </label>
+
+        <label class="mt-4">
+            revfirst
+            @Html.TextBoxFor(Model => Model.revfirst, new { })
+        </label>
+
+        <label class="mt-4">
+            revlast
+            @Html.TextBoxFor(Model => Model.revlast, new { })
+        </label>
+
+        <label class="mt-4">
+            revshowat
+            @Html.TextBoxFor(Model => Model.revshowat, new { })
+        </label>
+
+        <label class="mt-4">
+            secuassign
+            @Html.CheckBoxFor(Model => Model.secuassign, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            secucasefi
+            @Html.TextBoxFor(Model => Model.secucasefi, new { })
+        </label>
+
+        <label class="mt-4">
+            secucaseis
+            @Html.CheckBoxFor(Model => Model.secucaseis, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            secucasekey
+            @Html.TextBoxFor(Model => Model.secucasekey, new { })
+        </label>
+
+        <label class="mt-4">
+            secucasela
+            @Html.TextBoxFor(Model => Model.secucasela, new { })
+        </label>
+
+        <label class="mt-4">
+            secucasman
+            @Html.CheckBoxFor(Model => Model.secucasman, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            secudaypr2
+            @Html.TextBoxFor(Model => Model.secudaypr2, new { })
+        </label>
+
+        <label class="mt-4">
+            secudaypro
+            @Html.CheckBoxFor(Model => Model.secudaypro, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            seculocat2
+            @Html.TextBoxFor(Model => Model.seculocat2, new { })
+        </label>
+
+        <label class="mt-4">
+            seculocati
+            @Html.CheckBoxFor(Model => Model.seculocati, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            secuobject
+            @Html.CheckBoxFor(Model => Model.secuobject, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            security
+            @Html.TextBoxFor(Model => Model.security, new { })
+        </label>
+
+        <label class="mt-4">
+            security1
+            @Html.TextBoxFor(Model => Model.security1, new { })
+        </label>
+
+        <label class="mt-4">
+            security2
+            @Html.TextBoxFor(Model => Model.security2, new { })
+        </label>
+
+        <label class="mt-4">
+            secuschedu
+            @Html.CheckBoxFor(Model => Model.secuschedu, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            secuservob
+            @Html.CheckBoxFor(Model => Model.secuservob, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            secuspeci2
+            @Html.TextBoxFor(Model => Model.secuspeci2, new { })
+        </label>
+
+        <label class="mt-4">
+            secuspecif
+            @Html.CheckBoxFor(Model => Model.secuspecif, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            signpolicy
+            @Html.CheckBoxFor(Model => Model.signpolicy, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            site
+            @Html.TextBoxFor(Model => Model.site, new { })
+        </label>
+
+        <label class="mt-4">
+            started
+            @Html.TextBoxFor(Model => Model.started, new { })
+        </label>
+
+        <label class="mt-4">
+            supres_chanobj
+            @Html.CheckBoxFor(Model => Model.supres_chanobj, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            tooltips
+            @Html.CheckBoxFor(Model => Model.tooltips, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            user1
+            @Html.TextBoxFor(Model => Model.user1, new { })
+        </label>
+
+        <label class="mt-4">
+            user2
+            @Html.TextBoxFor(Model => Model.user2, new { })
+        </label>
+
+        <label class="mt-4">
+            user3
+            @Html.TextBoxFor(Model => Model.user3, new { })
+        </label>
+
+        <label class="mt-4">
+            team_key
+            @Html.TextBoxFor(Model => Model.team_key, new { })
+        </label>
+
+        <label class="mt-4">
+            viewpage1
+            @Html.CheckBoxFor(Model => Model.viewpage1, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            viewpage2
+            @Html.CheckBoxFor(Model => Model.viewpage2, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            viewpage3
+            @Html.CheckBoxFor(Model => Model.viewpage3, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            viewpage4
+            @Html.CheckBoxFor(Model => Model.viewpage4, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            viewpage5
+            @Html.CheckBoxFor(Model => Model.viewpage5, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            viewpage7
+            @Html.CheckBoxFor(Model => Model.viewpage7, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            viewpage8
+            @Html.CheckBoxFor(Model => Model.viewpage8, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            viewvision
+            @Html.CheckBoxFor(Model => Model.viewvision, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            showobjdelmsg
+            @Html.CheckBoxFor(Model => Model.showobjdelmsg, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            permissage
+            @Html.TextBoxFor(Model => Model.permissage, new { })
+        </label>
+
+        <label class="mt-4">
+            tableinfo
+            @Html.TextBoxFor(Model => Model.tableinfo, new { })
+        </label>
+
+        <label class="mt-4">
+            sorevhist
+            @Html.CheckBoxFor(Model => Model.sorevhist, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            supres_bhvnote
+            @Html.CheckBoxFor(Model => Model.supres_bhvnote, new { @unchecked = true })
+        </label>
+
+        <label class="mt-4">
+            bilprovrid
+            @Html.TextBoxFor(Model => Model.bilprovrid, new { })
+        </label>
+
+    </p>
+    @* <a asp-action="SaveStaffDetails" asp-route-id="staff_key" class="btn btn-primary">Save @pluralName Details</a> *@
+    <button class="btn btn-primary mt-4" asp-controller="Staff" asp-action="SaveStaffDetails" asp-route-id="Staff_key">Save @pluralName Details</button>
+
+</form>
+@* </div> *@

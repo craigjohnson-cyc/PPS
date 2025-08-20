@@ -1,0 +1,43 @@
+﻿@inject NavigationManager NavManager
+@inject IClientService ClientService
+
+@if(Client is not null)
+{
+    
+    <tr>
+        <td>@Client.clientno.Trim()</td>
+        <td>@Client.fname.Trim()</td>
+        <td>@Client.mname.Trim()</td>
+        <td>@Client.lname.Trim()</td>
+        <td>@Client.aka.Trim()</td>
+        <td>@Client.address.Trim()</td>
+        <td>@Client.address2.Trim()</td>
+        <td>@Client.city.Trim()</td>
+        <td>@Client.state.Trim()</td>
+        <td>@Client.zip.Trim()</td>
+        <td>
+            <a href="/Client/Display/@Client.client_key" class="btn btn-link">Select</a>
+            <a href="/Client/Edit/@Client.client_key" class="btn btn-link">Edit</a>
+            <a class="btn btn-link" @onclick="(() => DeleteClient(Client.client_key))">Delete</a>
+        </td>
+    </tr>
+}
+
+@code {
+    [Parameter]
+    public Client? Client { get; set; }
+
+    private async void DeleteClient(int clientKey)
+    {
+        if (clientKey > 0)
+        {
+            //call delete client api
+            HttpResponseMessage response = await ClientService.DeleteClient(clientKey);
+
+            if (response.IsSuccessStatusCode)
+            {
+                NavManager.NavigateTo("/Client/List");  // refresh the screen
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PPS.UI_Blazor.bundle.scp.css",
+      "PackagePath": "staticwebassets\\PPS.UI_Blazor.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor\\wwwroot\\STEPS.ICO",
+      "PackagePath": "staticwebassets\\STEPS.ICO"
+    },
+    {
+      "Id": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Lenovo\\source\\repos\\PPS\\UI\\PPS-UI_Blazor\\PPS-UI_Blazor\\PPS-UI_Blazor\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PPS.UI_Blazor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.PPS.UI_Blazor.props",
+      "PackagePath": "build\\PPS.UI_Blazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.PPS.UI_Blazor.props",
+      "PackagePath": "buildMultiTargeting\\PPS.UI_Blazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.PPS.UI_Blazor.props",
+      "PackagePath": "buildTransitive\\PPS.UI_Blazor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
